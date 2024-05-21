@@ -1,0 +1,3655 @@
+--- Page: https://github.com/fhamborg/news-please/wiki/Home/_history ---
+
+
+
+--- Page: https://github.com/fhamborg/news-please/wiki/articlemasterextractor ---
+
+ArticleMasterExtractor
+
+
+This guide explains the functionality of the ArticleMasterExtractor, the incorporated Extractors and the architecture.
+
+
+
+
+Functionality
+
+
+Architecture
+
+
+Extractors
+
+
+Comparer
+
+
+
+
+Functionality
+
+
+The ArticleMasterExtractor bundles several tools into one pipeline module in order to extract meta data from raw articles. Based on the html response of the processed pipeline item it extracts:
+
+
+
+
+author
+
+
+date the article was published
+
+
+article title
+
+
+article description
+
+
+article text
+
+
+top image
+
+
+used language
+
+
+
+
+Architecture
+
+
+
+
+Extractor
+
+
+This is the main class of the module. Based on the Array passed at initialization, it initializes the extractors, a 
+Cleaner
+ and a 
+Comparer
+.
+
+
+AbstractExtractor
+
+
+This abstract class defines the basic structure of extractors. Each extractor has to implement 
+AbstractExtractor
+ with the 
+extract(NewscrawlerItem)
+ returning an 
+ArticleCandidate
+ holding its results.
+If you want to implement your own extractor simply add a new module to 
+/extractor/extractors
+ including an implementation of 
+AbstractExtractor
+.
+
+
+Cleaner
+
+
+This class provides preprocessing, cleaning the intermediate results from unnecessary white-spaces, HTML-tags etc..
+
+
+Comparer
+
+
+Compares the results and creates an 
+ArticleCandidate
+ holding the best results.
+
+
+Files
+
+
+
+
+
+
+km4_extractor/
+
+
+
+
+
+
+__init__.py
+ (empty[1])
+
+
+
+
+
+
+article_candidate.py
+ (container for intermediate results)
+
+
+
+
+
+
+article_extractor.py
+ (manages all components)
+
+
+
+
+
+
+cleaner.py
+ (implements the cleaner used to preprocess extractor output)
+
+
+
+
+
+
+comparer/
+
+
+
+
+
+
+__init__.py
+ (empty[1])
+
+
+comparer.py
+
+
+comparer_author.py
+
+
+comparer_date.py
+
+
+comparer_description.py
+
+
+comparer_language.py
+
+
+comparer_text.py
+
+
+comparer_title.py
+
+
+comparer_topimage.py
+
+
+
+
+
+
+
+
+extractors/
+
+
+
+
+
+
+__init__.py
+ (empty[1])
+
+
+abstract_extractor.py
+
+
+date_extractor.py
+
+
+langdetect__extractor.py
+
+
+newspaper_extractor.py
+
+
+readability_extractor.py
+
+
+
+
+
+
+
+
+
+
+
+
+[1]: These files are empty but required because otherwise python would not recognize these directories as packages.
+
+
+Extractors
+
+
+DateExtractor
+
+
+
+
+
+
+Module name: 
+date_extractor
+
+
+
+
+
+
+Description:
+
+The DateExtractor uses Beautiful Soup to parse the response.
+It looks at the URL, JSON data, meta tags as well as html tags in order to extract the publish date of an article.
+
+
+
+
+
+
+Extraction features:
+
+
+
+
+publish date
+
+
+
+
+
+
+
+
+LangDetect
+
+
+
+
+
+
+Module name: 
+lang_detect_extractor
+
+
+
+
+
+
+Description:
+
+LangDetect first parses the HTML response for meta tags in order to detect the used language. If this fails, it resorts to 
+langdetect
+, a python port of Googles language detection.
+As input it uses the largest connected body of text.
+
+
+
+
+
+
+Extraction features:
+
+
+
+
+language
+
+
+
+
+
+
+
+
+NewspaperExtractor
+
+
+
+
+
+
+Module name: 
+newspaper_extractor
+
+
+
+
+
+
+Description:
+
+This extractor takes advantage of Newspaper, a tool authored and maintained by Lucas Ou-Yang. The main advantages of Newspaper are good image extraction and the support of over 10 languages (English, Chinese, German, Arabic, ...). The extraction of publish date on the other hand is very unreliable.
+
+
+Some information about Newspaper can be found 
+on reddit
+.
+
+
+
+
+
+
+Extraction features:
+
+
+
+
+authors
+
+
+publish date
+
+
+article title
+
+
+article (meta) description
+
+
+article text
+
+
+top image
+
+
+language
+
+
+
+
+
+
+
+
+ReadabilityExtractor
+
+
+
+
+
+
+Module name: 
+readability_extractor
+
+
+
+
+
+
+Description:
+
+This extractor takes advantage of Readability, extracting features based on html-tags. Readability shows good results for the extraction of descriptions and stands under Apache License 2. For further information visit 
+readability-lxml
+
+
+
+
+
+
+Extraction features:
+
+
+
+
+article title
+
+
+article description
+
+
+
+
+
+
+
+
+Comparer
+
+
+There is a comparer for every extracted data content. In the following, there is a small description of the idea how the comparers work.
+
+
+ComparerText
+
+
+After excluding texts with less than 15 words, the comparer compares every text with every other text by creating a cross product. Furthermore, it splits the string into words which form a set. It then calculates a score for two extracted texts (sets) which divides the amount of elements of the symmetric difference by the amount of elements in the intersection which is multiplied by two (because every word that exists in both text is counted only once in the intersection). The result is subtracted from one. This means that words that are completely equal have a score of one. The more words are in the symmetric difference, the less equal the texts are and the lower the score is. It then checks which texts have the highest score and returns the one from newspaper or the longer one.
+###ComparerDescription
+This comparer is primitive. If there is an extraction by newspaper, return it. If not, return other extraction if possible.
+
+
+ComparerTitle
+
+
+In order to compare each title with any other title, the comparer creates a cartesian product. If two titles match, the string is saved in a list. After comparing every title it counts which one has the most matches and returns it. In case, no title is found this way, the comparer searches for the shortest title. If there are any matches between titles, the comparer would start his search in the list with the matched titles. Otherwise it will start with the list where all extracted titles are saved. This method searches for the shortest title because the page title, which contains mostly a tag from the website (e.g. Title - BBC News) is often extracted instead of the title of the article. In view of the fact that this happens much more often than a partially extracted title, this is a useful method.
+
+
+ComparerTopimage
+
+
+This comparer is primitive. If there is an extraction by newspaper, return it. If not, return other extraction if possible.
+
+
+ComparerDate
+
+
+This comparer is primitive. If there is an extraction by dateExtractor, return it. If not, return other extraction if possible.
+
+
+ComparerLanguage
+
+
+The comparer saves every extracted language in a list and counts how often each language was extracted. The language which occurs most frequently will be returned. In case, there are two or more languages which occure most frequently, the one occuring first in the list would be returned. This "random" method is used for the fact that it is difficult to find the correct language through further criteria. If each language occurs equally often the one being extracted by Newspaper would be returned. This is due to the reason that Newspaper extracts the language tag which is contained in the html file, making this a very accurate method.
+
+
+ComparerAuthor
+
+
+This comparer is primitive. If there is an extraction by newspaper, return it. If not, return other extraction if possible.
+
+--- Page: https://github.com/fhamborg/news-please/wiki/config-parser ---
+
+news-please config parser
+
+
+This guide explains 
+config.py
+and how the different configuration files are read.
+
+
+config.py
+ contains two classes:
+
+
+
+
+CrawlerConfig
+
+
+JsonConfig
+
+
+
+
+Both of them are singleton-classes and have "special" initialisations, all getters of the classes return deepcopies of the objects.
+
+
+CrawlerConfig
+
+
+CrawlerConfig parses a normal cfg-file with "Sections" and "Options".
+
+
+Usage
+
+
+Import it as early as possible:
+
+
+from
+ 
+config
+ 
+import
+ 
+CrawlerConfig
+
+
+First instanciation:
+
+The class must only be instanciated once. So it has to be instanciated at the beginning of the program itself. Afterwards this one step is not neccessary anymore and will result in a warning.
+
+
+cfg
+ 
+=
+ 
+CrawlerConfig
+.
+get_instance
+()
+
+cfg
+.
+setup
+(
+<
+FILEPATH
+>
+)
+
+
+Further usage (in any file that is called after the first instantiation):
+
+
+cfg
+ 
+=
+ 
+CrawlerConfig
+.
+get_instance
+()
+
+
+Methods
+
+
+
+
+
+
+get_instance()
+:
+
+Get the instance of the config-class.
+This is a singleton-class so 
+CrawlerConfig.get_instance()
+ is the right way to instanciate this class.
+
+
+
+
+
+
+setup(_filepath_)
+:
+
+The basic setup of the config file: Reading the file and parsing it to the intern object.
+
+
+
+
+
+
+config()
+:
+
+Get a deep-copy of the config-form.
+Returns 2-dimensional dict.
+
+
+  config = cfg.config()
+  
+  config[<section>][<option>] = <value>
+
+
+
+
+
+
+
+section(_section_)
+:
+
+Gets a copy of a section.
+Returns a 1-dimensional dict.
+
+
+  section = cfg.section(<section>)
+  section[<option>] = <value>
+
+
+
+
+
+
+
+set_section(_section_)
+:
+
+Sets the current section to get options out of it.
+
+
+
+
+
+
+option(_option_)
+:
+
+Requires set_section to be called before.
+
+
+  cfg.set_section(<section>)
+  option = cfg.option(<option>)  
+
+  # option == <value>  
+
+
+
+
+
+
+
+JsonConfig
+
+
+JsonConfig parses a special JSON-File with the following format:
+
+
+{
+  
+"base_urls"
+ : {
+    
+"url"
+: 
+"
+http://examp.le
+"
+
+  }
+}
+
+
+Usage
+
+
+Import it as early as possible:
+
+
+from
+ 
+config
+ 
+import
+ 
+JsonConfig
+
+
+First instanciation:
+
+The class must only be instanciated once. So it has to be instanciated at the beginning of the program itself. Afterwards this one step is not neccessary anymore and will result in a warning.
+
+
+json
+ 
+=
+ 
+JsonConfig
+.
+get_instance
+()
+
+json
+.
+setup
+(
+<
+FILEPATH
+>
+)
+
+
+Further usage (in any file that is called after the first instanciation):
+
+
+json
+ 
+=
+ 
+JsonConfig
+.
+get_instance
+()
+
+
+Methods
+
+
+
+
+
+
+get_instance()
+:
+
+Get the instance of the json-config-class.
+This is a singleton-class so 
+JsonConfig.get_instance()
+ is the right way to instanciate this class.
+
+
+
+
+
+
+setup(_filepath_)
+:
+
+The basic setup of the json file: Reading the file and parsing it to the intern object.
+
+
+
+
+
+
+config()
+:
+
+Get a deep-copy of the whole parsed json-config-file.
+
+
+  json_config = json.config()
+
+
+
+
+
+
+
+load_json(_filepath_)
+:
+
+Load the JSON-file located at 
+filepath
+.
+Should normally not be used. Only for switching inbetween the files.
+It overwrites all values.
+
+
+  json.load_json("../test.json");
+
+
+
+
+
+
+
+get_url_array()
+:
+
+Get all urls mentioned in the "base_url > url"-section of the file as an array.
+Returns them as a list.
+
+
+  print(json.get_url_array())
+
+  # Prints something like [u"http://examp.le", u"http://te.st"]
+
+--- Page: https://github.com/fhamborg/news-please/wiki/configuration ---
+
+news-please configuration
+
+
+This guide focuses on the extensive configuration possibilities of news-please and explains all sections of the configuration file 
+config.cfg
+.
+
+
+
+
+Structure and syntax
+
+
+
+
+Sections
+
+
+
+
+Crawler
+
+
+Heuristics
+
+
+Files
+
+
+MySQL
+
+
+Elasticsearch
+
+
+ArticleMasterExtractor
+
+
+DateFilter
+
+
+Scrapy
+
+
+
+
+
+
+
+
+Structure and Syntax
+
+
+config.cfg
+ holds the  settings for all the different scraper, heuristics and pipelines.
+The file is located by default at 
+~/news-please/config/config.cfg
+. However, it is also possible to pass a different config directory with the 
+-c
+ parameter:
+
+
+$ news-please -c /my/custom/path
+
+
+
+or
+
+
+$ news-please -c ~/somewhere/in/userdir
+
+
+
+The file is divided into different sections:
+
+
+[section_name]
+
+option_name = value
+
+
+
+All values are parsed by 
+ast.literal_eval
+.
+So if options have to be special data-types (array, dict, bool) they have to be submitted in correct python-syntax.
+
+
+[
+test_section
+]
+
+
+# Booleans
+
+
+# (bools in python have to be uppercase first)
+
+
+bool_string
+ 
+=
+ 
+true
+ 
+# This would become a string, because it is not uc-first.
+
+
+bool_bool
+ 
+=
+ 
+True
+   
+# This would become a bool with value True.
+
+
+
+# Dicts
+
+
+dict_string
+ 
+=
+ {
+"test_1"
+ : 
+True
+, 
+"test_2"
+ : 
+true
+} 
+# This would become a string, because of an ValueError: Malformed String. The reason is that test_2s true is written wrong.
+
+
+dict_dict
+ 
+=
+ {
+"test_1"
+ : 
+True
+, 
+"test_2"
+ : 
+1.1
+}    
+# This would become a dict where test_1 is bool (True) and test_2 is float (1.1)
+
+
+
+# Strings
+
+
+string_bool
+ 
+=
+ 
+True
+          
+# This would become a bool.
+
+
+string_string
+ 
+=
+ 
+true
+        
+# This would become a string.
+
+
+string_string_True
+ 
+=
+ 
+"True"
+ 
+# This would become a string as well. The quotation-marks will be stripped.
+
+
+Sections
+
+
+Crawler
+
+
+The crawler section provides the default-settings for all sites.
+These settings can often be overwritten per site in the 
+input_data.hjson
+.
+
+
+
+
+
+
+default
+: (string)
+
+The default crawler to be used. All the implemented crawlers can be found 
+here
+.
+
+
+
+
+
+
+fallbacks
+: (dict containing strings)
+
+All crawlers check if a site is compatible. If a site is incompatible a defined fallback will be checked. 
+
+This variable defines the fallbacks for the crawler in a dict.
+
+
+The key is the failing crawler and the value is the fallback-crawler:
+
+
+ fallbacks = {
+     "RssCrawler": None,
+     "RecursiveSitemapCrawler": "RecursiveCrawler",
+     "SitemapCrawler": "RecursiveCrawler",
+     "RecursiveCrawler": None,
+     "Download": None
+     }
+
+
+
+
+
+
+
+hours_to_pass_for_redownload_by_rss_crawler
+: (int)
+
+RSS-Crawlers are often run as a daemon. So if a site remains a long time in the RSS-file and should not downloaded for a specified amount of time, this time can be set here.
+
+
+
+
+
+
+number_of_parallel_crawlers
+: (int)
+
+The number of threads to start. Every thread downloads one site. As soon as one thread terminates, the next site will be downloaded until finished.
+
+
+
+
+
+
+number_of_parallel_daemons
+: (int)
+The number of daemons to run. Every daemon is another thread, but running in a loop. As soon as one daemon terminates, the next site in the queue will be started.
+
+
+This is additional to 
+number_of_parallel_crawlers
+.
+
+
+
+
+
+
+ignore_file_extensions
+: (string)
+
+URLs which end on any of the following file extensions are ignored for recursive crawling.
+
+
+Default:
+
+ignore_file_extensions = "(pdf)|(docx?)|(xlsx?)|(pptx?)|(epub)|(jpe?g)|(png)|(bmp)|(gif)|(tiff)|(webp)|(avi)|(mpe?g)|(mov)|(qt)|(webm)|(ogg)|(midi)|(mid)|(mp3)|(wav)|(zip)|(rar)|(exe)|(apk)|(css)"
+
+
+
+
+
+
+ignore_regex
+: (string)
+
+URLs which match the following regex are ignored for recursive crawling.
+
+
+
+
+
+
+sitemap_allow_subdomains
+: (bool)
+
+If True, any SitemapCrawler will try to crawl on the sitemap of the given domain including subdomains instead of a domain's main sitemap.
+
+
+
+
+
+
+Heuristics
+
+
+This section provides the default-settings on heuristics and how they should be used.
+These settings are often overwritten per site in 
+input_data.hjson
+.
+
+
+
+
+
+
+enabled_heuristics
+: (dict, containing mixed types)
+
+This option sets the default heuristics used to detect sites containing an article.
+news-please expects a dict containing heuristic names as keys and as value the condition necessary for articles to pass the heuristic.
+
+
+Depending on the return value of a heuristic, the condition can be  a bool, a string, an int or a float.
+
+
+
+
+bool:
+
+Acceptable conditions are 
+True
+ and 
+False
+, 
+but
+ 
+False
+ 
+will disable the heuristic!
+
+
+
+
+string:
+
+Acceptable conditions are simple strings: 
+"string_heuristic": "matched_value"
+
+
+
+
+float/int:
+
+Acceptable conditions are strings that may contain one equality operator (
+<
+, 
+>
+, 
+<=
+, 
+>=
+,
+=
+) and a number, e.g. 
+"linked_headlines": "<=0.65"
+.
+
+
+Do not put spaces between the equality operator an the number!
+
+
+
+
+
+
+Default: 
+enabled_heuristics = {"og_type": True, "linked_headlines": "<=0.65", "self_linked_headlines": "<=0.56"}
+
+
+For all implemented heuristic and their supported conditions see 
+heuristics
+.
+
+
+
+
+
+
+pass_heuristics_condition
+: (string)
+
+This string holds a boolean expression defining the evaluation of the used heuristics. After all heuristics are tested and returned 
+True
+ or 
+False
+, this expression will be checked.
+
+
+It may contain any heuristics-name (e.g. 
+og_type
+, 
+overwrite_heuristics
+), the boolean operators (e.g. 
+and
+, 
+or
+, 
+not
+) and parentheses (
+(
+, 
+)
+).
+
+
+Default: 
+og_type and (self_linked_headlines or linked_headlines) 
+
+
+
+
+
+
+min_headlines_for_linked_test
+: (int)
+
+This option is for the 
+linked_headlines
+-heuristic and cannot be overwritten by 
+input_data.hjson
+. This option disables the heuristic (returns 
+True
+) if a site doesn't contain enough headlines.
+
+
+
+
+
+
+Files
+
+
+This section is responsible for paths to the input files as well as the output files.
+
+
+
+
+
+
+relative_to_start_processes_file
+: (bool)
+
+Toggles between either using the path to 
+start_processes.py
+ (True) or the path to this config file (False) for relative paths.
+
+
+This does not work for this config's 'Scrapy' section which is always relative to the dir the start_processes.py script is called from.
+
+
+
+
+
+
+url_input
+: (string)
+
+The location of the 
+input_data.hjson
+ file.
+
+
+
+
+
+
+local_data_directory
+: (string)
+
+The savepath of the files which will be downloaded. The save-path provides many the following interpolation options:
+
+
+
+
+
+
+
+
+Interpolation-String
+
+
+Meaning
+
+
+
+
+
+
+
+
+
+
+%time_downloaded(<code>)
+
+
+Current time at download. Will be replaced with 
+strftime(<code>)
+ where 
+<code>
+ is a string, further explained 
+here
+.
+
+
+
+
+
+
+%time_execution(<code>)
+
+
+The time, when the crawler-execution was started. Will be replaced with 
+strftime(<code>)
+ where 
+<code>
+ is a string, further explained 
+here
+.
+
+
+
+
+
+
+%timestamp_download
+
+
+Current time at download (unix-timestamp).
+
+
+
+
+
+
+%timestamp_execution
+
+
+The time, when the crawler-execution was started (unix-timestamp).
+
+
+
+
+
+
+%domain
+
+
+The domain of the crawled file not containing any subdomains (not including www as well)
+
+
+
+
+
+
+%appendmd5_domain(<size>)
+
+
+appends the md5 to %domain(< - 32 (md5 length) - 1 (_ as separator)>) if domain is longer than 
+
+
+
+
+
+
+
+%md5_domain(<size>)
+
+
+First 
+<size>
+ chars of md5 hash of %domain.
+
+
+
+
+
+
+%full_domain
+
+
+The domain including subdomains.
+
+
+
+
+
+
+%url_directory_string(<size>)
+
+
+The first 
+<size>
+ chars of the directories on the server (e.g. 
+http://panamapapers.sueddeutsche.de/articles/56f2c00da1bb8d3c3495aa0a/
+ would evaluate to 
+articles_56f2c00da1bb8d3c3495aa0a
+, but stripped to 
+<size>
+ chars), no filename
+
+
+
+
+
+
+%md5_url_directory_string(<size>)
+
+
+First 
+<size>
+ chars of md5 hash of %url_directory_string()
+
+
+
+
+
+
+
+
+
+
+
+
+
+| 
+%url_file_name(<size>)
+            | First 
+<size>
+ chars of the file name (without type) on the server (e.g. 
+http://www.spiegel.de/wirtschaft/soziales/ttip-dokumente-leak-koennte-ende-der-geheimhaltung-markieren-a-1090466.html
+ would evaluate to 
+ttip-dokumente-leak-koennte-ende-der-geheimhaltung-markieren-a-1090466
+, stripped to  chars). No filenames (indexes) will evaluate to index. |
+| 
+%md5_url_file_name(<size>)
+        | First 
+<size>
+ chars of md5 hash of %url_file_name.                                                                                                                                                                                                                                                                                                                    |
+| 
+%max_url_file_name
+                | First x chars of %url_file_name, so the entire savepath has a length of the max possible length for a windows file system (260 characters - 1 
+<NUL>
+).                                                                                                                                                                                                                |
+
+
+Default: `local_data_directory = ./data/%time_execution(%Y)/%time_execution(%m)/%time_execution(%d)/%appendmd5_full_domain(32)/%appendmd5_url_directory_string(60)_%appendmd5_max_url_file_name_%timestamp_download.html`
+
+
+
+
+
+
+
+format_relative_path
+: (bool)
+
+Toggles whether leading 
+./
+ or 
+.\
+ from above local_data_directory should be removed when saving the path into the Database. If true 
+./data
+ would become 
+data
+
+
+
+
+
+
+MySQL
+
+
+
+
+
+
+host
+: (string)
+
+The host of the database.
+
+
+
+
+
+
+port
+: (int)
+
+The port the MariaDB / MySQL-server is running on.
+
+
+
+
+
+
+db
+: (string)
+
+The database, the news-please should use.
+
+
+
+
+
+
+username
+: (string)
+
+The username to connect to the database.
+
+
+
+
+
+
+password
+: (string)
+
+The password matching the user to connect to the database. If your password consists of only numbers enclose it in quotes to ensure it is handled as a string, e.g 
+password = '123456'
+.
+
+
+
+
+
+
+Elasticsearch
+
+
+
+
+
+
+host
+: (string)
+
+The host of the database.
+
+
+
+
+
+
+port
+: (int)
+
+The port Elasticsearch is running on.
+
+
+
+
+
+
+index_current
+: (string)
+
+Index used to store the scraped articles.
+
+
+
+
+
+
+index_archive
+: (string)
+
+Index used to store older versions of articles hold in 
+index_current
+.
+
+
+
+
+
+
+mapping
+: (string)
+
+Mapping used for the articles stored in Elasticsearch. The mapping declares the types, format and how the values are indexed for each field. For more information about mapping in Elasticsearch visit this 
+guide
+.
+
+
+
+
+
+
+ArticleMasterExtractor
+
+
+This section holds the settings for the ArticleMasterExtractor responsible for the extraction of meta data from raw html responses.
+
+
+
+
+
+
+extractors
+: (list of strings)
+
+A list of extractors used to process the scraped websites and extract the data. For a list of all implemented extractors visit 
+ArticleMasterExtractor
+.
+
+
+Default: 
+extractors = ['newspaper_extractor', 'readability_extractor', 'date_extractor', 'lang_detect_extractor']
+
+
+
+
+
+
+DateFilter
+
+
+This section holds the settings for the DateFilter module, the module filters articles based on their publish date and a given time interval.
+
+
+
+
+
+
+start_date
+: (string)
+
+A date defining the start of the allowed time interval, the date has to follow the format 'yyyy-mm-dd hh:mm:ss'.
+It is also possible to set this variable to 
+None
+ creating a half-bounded interval.
+
+
+
+
+
+
+end_date
+: (string)
+
+A date defining the end of the allowed time interval, the date has to follow the format 'yyyy-mm-dd hh:mm:ss'.
+It is also possible to set this variable to 
+None
+ creating a half-bounded interval.
+
+
+
+
+
+
+strict_mode
+: (bool)
+
+Enables strict mode, this will filter all articles without a publishing date.
+
+
+
+
+
+
+Scrapy
+
+
+This section is a replacement for the settings.py provided by scrapy. You can just paste all the scrapy-settigns here. A list of options can be found 
+here
+. 
+These settings will be applied to all crawlers.
+
+
+
+
+
+
+ITEM_PIPELINES
+: (dict string:int)
+
+Holds the path to the pipeline modules used and their position in the pipeline as key. The possible positions range from 0 to 1000 and the module with the lowest position is executed first.
+
+
+A list of all pipeline modules can be found 
+here
+.
+
+--- Page: https://github.com/fhamborg/news-please/wiki/crawlers-and-heuristics ---
+
+Crawlers and heuristics
+
+
+This section explains the different crawlers and heuristics implemented in news-please.
+
+
+
+
+
+
+Crawers
+
+
+
+
+RSS crawler
+
+
+Sitemap crawler
+
+
+Recursive crawler
+
+
+Recursive sitemap crawler
+
+
+
+
+
+
+
+
+Heuristics
+
+
+
+
+Og-type
+
+
+Linked headlines
+
+
+Self linked headlines
+
+
+Is not from subdomain
+
+
+
+
+
+
+
+
+Crawlers
+
+
+news-please provides multiple scrapers, this part explains their function and when to use them.
+Crawlers can be set global in the 
+newscrawler.cfg
+ or for a specific website in 
+input_data.hjson
+.
+###Download crawler
+
+
+
+
+
+
+Class name: 
+"Download"
+
+
+
+
+
+
+Functionality:
+
+All this crawler does is crawling the specified urls. For this crawler, the input .json file can contain a list of urls:
+
+
+"url":["http://example.com/1", "http://example.com/2"]
+
+
+
+
+
+
+
+Requirements:
+
+This spider should work on any given url.
+
+
+
+
+
+
+Use case:
+
+Only when an exact page is needed, for testing purposes mostly.
+
+
+
+
+
+
+RSS crawler
+
+
+
+
+
+
+Class name: 
+"RssCrawler"
+
+
+
+
+
+
+Functionality:
+
+This spider starts on the given url, extracts the site's rss feed, parses the found feed and crawls every link within it, meaning the crawler will test every link in the sitemap on being an article and passes it to the pipeline if the result is positive.
+
+
+
+
+
+
+Requirements:
+
+This spider should work on any given webpage that contains a valid href to a valid xml feed (rss).
+
+
+
+
+
+
+Reliability:
+
+The spider finds only those articles that are listed in the xml feed.
+
+
+
+
+
+
+Use case:
+
+This spider is about as efficient as the sitemap crawler, though it usually crawls a much smaller xml feed that   only contains the latest articles. Thus this crawler should be used whenever it is important to update an already existing database with the latest articles.
+
+
+Since only the latest articles are listed in the rss feed, this crawler should be executed at a high frequency (daemonize).
+
+
+
+
+
+
+Sitemap crawler
+
+
+
+
+
+
+Class name: 
+"SitemapCrawler"
+
+
+
+
+
+
+Functionality:
+
+This spider extracts and crawls the domains' sitemap from its robots.txt, meaning the crawler will test every link in the sitemap on being an article and passes it to the pipeline if the result is positive.
+
+
+
+
+
+
+Requirements:
+
+This spider should work on any given webpage that does have a robots.txt and lists a valid link to a valid sitemap within it.
+
+
+
+
+
+
+Reliability:
+
+The spider finds every article that is listed in the sitemap. There's no guarantee though that every published article is listed in the sitemap.
+
+
+
+
+
+
+Use case:
+
+This spider is pretty fast for crawling an entire domain. Thus, it should be used whenever possible.
+
+
+
+
+
+
+Recursive crawler
+
+
+
+
+
+
+Class name: 
+"RecursiveCrawler"
+
+
+
+
+
+
+Functionality:
+
+This spider starts at a given url and then recursively crawls all hrefs if the hrefs do not match the ignore_regex set   in the .json file or any of the ignore_file_extensions set in the .cfg file.
+
+
+At last, it tests the response on being an article and passes it to the pipeline if the result is positive.
+
+
+
+
+
+
+Requirements:
+
+This spider should work on any given webpage.
+
+
+
+
+
+
+Reliability:
+
+The spider finds every article that can be accessed by following links from the given url that do not point to off-domain-pages. This spider obviously does not find articles, that aren't linked anywhere on the domain (it may not find some articles listed in the page's sitemap).
+
+
+
+
+
+
+Use case:
+
+This spider takes a long time since it crawls a lot of hrefs that point to invalid pages, off-domain-pages and already crawled pages. Thus, it should only be used when the SitemapCrawler fails.
+
+
+
+
+
+
+Recursive sitemap crawler
+
+
+
+
+
+
+Class name: 
+"RecursiveSitemapCrawler"
+
+
+
+
+
+
+Functionality:
+
+This spider extracts and crawls the domains' sitemap from its robots.txt, then recursively crawls all hrefs if the hrefs do not match the ignore_regex set in the .json file or any of the ignore_file_extensions set in the .cfg file.
+
+
+At last, it tests the response on being an article and passes it to the pipeline if the result is positive.
+
+
+
+
+
+
+Requirements:
+
+This spider should work on any given webpage that does have a robots.txt and lists a valid link to a valid sitemap within it.
+
+
+
+
+
+
+Reliability:
+
+The spider finds every article that is listed in the sitemap and every article that can be accessed by following links that do not point to off-domain-pages from any of those pages.
+
+
+This crawler might find the most articles of all the crawlers.
+
+
+
+
+
+
+Use case:
+
+This spider is about as slow as the recursive crawler since it crawls a lot of hrefs that point to invalid pages, off-domain-pages and already crawled pages. It might find more articles than any other crawler and should only be used if completeness is the most important.
+
+
+
+
+
+
+Heuristics
+
+
+Heuristics are used to detect if a website contains an article and should be passed to the pipeline. It is possible to set the used heuristics global in 
+newscrawler.cfg
+, but overwriting these default settings in the 
+input_data.hjson
+  file for each target should produce better results.
+
+
+og type
+
+
+
+
+
+
+Heuristic name: 
+"og_type"
+
+
+
+
+
+
+Assumption:
+
+On every newssite 
+og:type
+ is set to article if the website is an article or something similar to an article.
+
+
+
+
+
+
+Idea:
+
+A website must contain 
+<meta property="og:type" content="article">
+.
+
+
+
+
+
+
+Implementation:
+
+Return True if 
+og:type
+ is 
+article
+, otherwise False.
+
+
+
+
+
+
+Outcome:
+
+In fact, every news-website uses this "tagging". So this is a minimum requirement. The problem is, that some websites also tag news-category-sites as single articles. For example 
+http://www.zeit.de/kultur/literatur/index
+ is tagged as article, but is not an article. These sites must still be filtered out.
+
+
+
+
+
+
+linked headlines
+
+
+
+
+
+
+Heuristic name: 
+"linked_headlines"
+
+
+
+
+
+
+Assumption:
+
+If a site contains mostly linked headlines, it is just a news-aggregation of multiple articles, thus not a real article.
+
+
+
+
+
+
+Idea:
+
+Check how many 
+<h1>
+, 
+<h2>
+, 
+<h3>
+, 
+<h4>
+, 
+<h5>
+ and 
+<h6>
+ are on a site and how many of them contain an 
+<a href>
+.
+
+
+
+
+
+
+Implementation:
+
+Return a ratio: linked-headlines divided by headlines. There is a setting in 
+newscrawler.cfg
+ disabling the heuristic if a site doesn't contain enough headlines.
+
+
+
+
+
+
+Outcome:
+
+News aggregation-sites normally contain a linked-headlines ratio near 1. These will successfully be filtered out. Some sites will still remain. 
+This heuristic still needs testing.
+_
+
+
+
+
+
+
+self linked headlines
+
+
+
+
+
+
+Heuristic name: 
+"self_linked_headlines"
+
+
+
+
+
+
+Assumption:
+
+Links to other sites in headlines are mostly editorial, so only if a linked headlines mostly link to subsites, its a news-aggregation-site.
+
+
+
+
+
+
+Idea:
+
+Same as linked_headlines, but just count headlines linked to the same domain.
+
+
+
+
+
+
+Implementation:
+
+Return a ratio: linked-to-same-domain-headlines divided by headlines.
+
+
+
+
+
+
+Outcome:
+
+
+Not tested.
+
+
+
+
+
+
+is not from subdomain
+
+
+
+
+
+
+Heuristic name: 
+"is_not_from_subdomain"
+
+
+
+
+
+
+Assumption:
+
+Subdomains are mostly blogs or logins. Blogs may still contain 
+og:type=article
+, but are not real "articles".
+
+
+
+
+
+
+Idea:
+
+Do not download files from (other) subdomains as the starting-domain.
+
+
+
+
+
+
+Implementation:
+
+Return True if not from (another) subdomain.
+
+
+
+
+
+
+Outcome:
+
+If the site heavily uses subdomains, for example for categories, this heuristic will fail. So this heuristic should only used on websites where one is sure, that subdomains do not contain articles.
+
+--- Page: https://github.com/fhamborg/news-please/wiki/developer-guide ---
+
+news-please developer guide
+
+
+This explains the inner workings of news-please and is directed at developers and advanced users.
+In the following sections we explain the program flow and the architecture of this project.
+
+
+
+
+Program flow
+
+
+Files
+
+
+Classes
+
+
+
+
+Program flow
+
+
+Here is an overview of the program flow (this diagram is not an UML-diagram or similar, it is just for clarification on how the program works):
+
+
+
+
+Starting the crawler
+
+
+After starting news-please, a number of crawlers will be started as sub processes. The number of processes started depends on the input (number of targets) and is limited by the 
+configuration
+
+
+Each sub process calls 
+single_crawler.py
+ loading the settings defined for the crawler.
+
+
+Scrapy - Spiders
+
+
+As mentioned before, this project heavily relies on Scrapy 1.1, an easy modifiable crawler-framework.
+The crawlers are implemented as Scrapy spideres located in the spider directory (
+./newscrawler/crawler/spiders/
+).
+
+
+Right now there are multiple crawlers implemented. For further information on how which spider works, 
+read here
+.
+
+
+Heuristics
+
+
+We use multiple heuristics to detect whether a site is an article or not. All these heuristics are (and if you want to add some, these should be as well) located in 
+./newscrawler/helpers/heuristics.py
+.
+
+
+Heuristics can be enabled and disabled per site, also how heuristics work can be changed per site.
+
+
+Heuristics must return a boolean, a string, an int or a float.
+For each heuristic a value can be set, that must be matched.
+More background information about the heuristics can be found 
+here
+.
+
+
+For further information, read the 
+[Heuristics]-Section of the Configuration page
+.
+
+
+Scrapy - Pipelines
+
+
+Sites that passed the heuristics (from now on called articles) are passed to pipelines. Disabling, enabling and the order of pipelines can be set in in the 
+[Scrapy]
+-section of the 
+newscrawler.cfg
+.
+
+
+news-please offers several 
+pipeline modules
+ to filter, edit and save scraped articles. If your interested in developing your own make sure to add them to 
+pipelines.py
+.
+
+
+Files
+
+
+Our file structure has a simple file-hierarchy.
+Classes should only rely on classes which are stored in the same or child-directories.
+
+
+
+
+
+
+__init__.py
+ (
+empty
+ [1])
+
+
+
+
+
+
+.gitignore
+
+
+
+
+
+
+init-db.sql
+ (Setup script for the optional MySQL database)
+
+
+
+
+
+
+README.md
+
+
+
+
+
+
+LICENSE.txt
+
+
+
+
+
+
+requirements.txt
+ (simple Python requirements.txt)
+
+
+
+
+
+
+single_crawler.py
+ (A single crawler-manager)
+
+
+
+
+
+
+__main__.py
+ (
+Entry point
+, manages all crawlers)
+
+
+
+
+
+
+config/
+
+
+
+
+
+
+sitelist.hjson
+ (the input file containing the crawling-urls)
+
+
+
+
+config.cfg
+ (general config file)
+
+
+
+
+
+
+
+
+newscrawler/
+
+
+
+
+
+
+__init__.py
+ (
+empty
+ [1])
+
+
+
+
+
+
+config.py
+ (Reading and parsing the config files (default: 
+sitelist.json
+ and 
+config.cfg
+))
+
+
+
+
+
+
+helper.py
+ (Helper class, containing objects of classes in helper_classes/ for passing to the crawler-spiders)
+
+
+
+
+
+
+crawler/
+ (containing mostly basic crawler-logic and scrapy-functionality)
+
+
+
+
+
+
+__init__.py
+ (
+empty
+ [1])
+
+
+
+
+items.py
+ (Scrapys items-functionality)
+
+
+
+
+spiders/
+
+
+
+
+
+
+__init__.py
+ (
+empty
+ [1])
+
+
+
+
+download_crawler.py
+ A download crawler for testing.
+
+
+
+
+recursive_crawler.py
+ (href-following, recursive crawler)
+
+
+
+
+
+recursive_sitemap_crawler.py
+ (crawler using the sitemap as starting point, then going recursive)
+
+
+
+
+
+
+
+
+rss_crawler.py
+ (RSS-Feed-crawler)
+
+
+
+
+sitemap_crawler.py
+ (crawler reading the sitemaps via robots.txt)
+
+
+
+
+
+
+
+
+
+
+
+
+helper_classes/
+
+
+
+
+
+
+__init__.py
+ (
+empty
+ [1])
+
+
+
+
+
+
+heuristics.py
+ (heuristics used to detect articles)
+
+
+
+
+
+
+parse_crawler.py
+ (helper class for the crawlers parse-method)
+
+
+
+
+
+
+savepath_parser.py
+ (helper-class for saving files)
+
+
+
+
+
+
+url_extractor.py
+ (URL-Extraction-helper)
+
+
+
+
+
+
+sub_classes/
+
+
+
+
+
+
+__init__.py
+ (
+empty
+ [1])
+
+
+
+
+heuristics_manager.py
+ (class used in heuristics.py for easier configuration later on)
+
+
+
+
+
+
+
+
+
+
+
+
+pipeline/
+
+
+
+
+
+
+__init__.py
+ (
+empty
+ [1])
+
+
+
+
+pipelines.py
+ (Scrapys pipelines-functionality, handling database inserts, local storage, wrong HTTP-Codes ...)
+
+
+
+
+extractor/
+ (Additional resources needed for the ArticleMasterExtractor)
+
+
+
+
+
+
+
+
+
+
+
+
+[1]: These files are empty but required because otherwise python would not recognize these directories as packages.
+
+
+Classes
+
+--- Page: https://github.com/fhamborg/news-please/wiki/pipeline ---
+
+news-please pipeline
+
+
+The news-please pipeline offers several modules for processing, filtering and storing the results of the crawlers.
+This section explains the different pipeline modules and their configuration.
+
+
+
+
+
+
+Processing
+
+
+
+
+ArticleMasterExtractor
+
+
+
+
+
+
+
+
+Filter
+
+
+
+
+Date filter
+
+
+HTML code handling
+
+
+
+
+
+
+
+
+Storage
+
+
+
+
+Local storage
+
+
+
+
+Elasticsearch storage
+
+
+
+
+MySQL storage
+
+
+RSS crawl compare
+
+
+
+
+
+
+
+
+
+
+
+
+Processing
+
+
+ArticleMasterExtractor
+
+
+
+
+
+
+Module path: 
+newscrawler.pipeline.pipelines.ArticleMasterExtractor
+
+
+
+
+
+
+Functionality:
+
+The ArticleMasterExtractor bundles several tools into one pipeline module in order to extract meta data from raw articles. Based on the html response of the processed pipeline item it extracts:
+
+
+
+
+author
+
+
+date the article was published
+
+
+article title
+
+
+article description
+
+
+article text
+
+
+top image
+
+
+used language
+
+
+
+
+
+
+
+
+Configuration:
+
+While the module works fine with the default settings, it is possible reconfigure the tools used in the extraction process. These changes can be performed in the 
+ArticleMasterExtractor
+-section of the config file.
+
+
+More detailed information about the module and the incorporated extractors can be found 
+here
+.
+
+
+
+
+
+
+Filter
+
+
+Date filter
+
+
+
+
+
+
+Module path: 
+newscrawler.pipeline.pipelines.DateFilter
+
+
+
+
+
+
+Functionality:
+
+This module filters the extracted articles based on their publishing date. It allows to filter all articles younger than a start date and/or older than an end date.
+It also implements a strict mode that dropps all articles without an extracted publishing date.
+
+
+
+
+
+
+Requirements:
+
+Due to need of meta data (the publishing date), the module only functions if placed behind an suitable 
+extractor
+ in the pipeline.
+
+
+
+
+
+
+Configuration:
+
+The configuration is done in the 
+DateFilter Section
+ of 
+newscrawler.cfg
+:
+
+
+ #!python
+ [DateFilter]
+ start_date = '1999-01-01 00:00:00'
+ end_date = '2999-12-31 00:00:00'  
+
+ strict_mode = False
+
+
+
+Dates can be either None or date string with the following format: 
+'yyyy-mm-dd hh:mm:ss'
+
+
+
+
+
+
+HTML code handling
+
+
+
+
+
+
+Module path: 
+newscrawler.pipeline.pipelines.HMTLCodeHandling
+
+
+
+
+
+
+Functionality:
+
+This Module checks the server responses and drops the processed site if the request was not accepted.
+As of 22.06.16 this module is not active, but serves as an example pipeline module.
+
+
+
+
+
+
+Storage
+
+
+Local storage
+
+
+
+
+
+
+Module path: 
+newscrawler.pipeline.pipelines.LocalStorage
+
+
+
+
+
+
+Functionality:
+
+
+
+
+
+
+Elasticsearch storage
+
+
+
+
+
+
+Module path: 
+newscrawler.pipeline.pipelines.ElasticsearchStorage
+
+
+
+
+
+
+Functionality:
+
+This Modules stores the extracted data in a given Elasticsearch database. It manages two separate indices, one for current articles and one to archive previous versions of updated articles. Both indices use the following default mapping to store the articles and extracted meta data:
+
+
+ mapping = {
+     'url': {'type': 'string', 'index': 'not_analyzed'},
+     'sourceDomain': {'type': 'string', 'index': 'not_analyzed'},
+     'pageTitle': {'type': 'string'},
+     'rss_title': {'type': 'string'},
+     'localpath': {'type': 'string', 'index' : 'not_analyzed'},
+     'ancestor': {'type': 'string'},
+     'descendant': {'type': 'string'},
+     'version': {'type': 'long'},
+     'downloadDate': {'type': 'date', "format":"yyyy-MM-dd HH:mm:ss"},
+     'modifiedDate': {'type': 'date', "format":"yyyy-MM-dd HH:mm:ss"},
+     'publish_date': {'type': 'date', "format":"yyyy-MM-dd HH:mm:ss"},
+     'title': {'type': 'string'},
+     'description': {'type': 'string'},
+     'text': {'type': 'string'},
+     'author': {'type': 'string'},
+     'image': {'type': 'string', 'index' : 'not_analyzed'},
+     'language': {'type': 'string', 'index' : 'not_analyzed'}
+     }
+
+
+
+
+
+
+
+Configuration:
+
+To use this module you have to enter the address, the used port and if needed your user credentials into the 
+Elasticsearch Section
+ of 
+newscrawler.cfg
+. There you can also alter the name of the indices and the mapping used to store the article data.
+
+
+
+
+
+
+MySQL storage
+
+
+
+
+
+
+Module path: 
+newscrawler.pipeline.pipelines.MySQLStorage
+
+
+
+
+
+
+Functionality:
+
+This Modules stores the extracted data in a given MySQL or MariaDB database. It manages two separate tables, one for current articles and one to archive previous versions of updated articles:
+
+
+
+
+
+
+
+
+Configuration:
+
+To use this module you have to enter the address, the used port and if needed your user credentials into the 
+MySQL section
+ of 
+newscrawler.cfg
+. There is also a setup script 
+init-db.sql
+ for a convenient creation of the used tables.
+
+
+
+
+
+
+RSS crawl compare
+
+
+
+
+
+
+Module path: 
+newscrawler.pipeline.pipelines.RSSCrawlCompare
+
+
+
+
+
+
+Functionality:
+
+Similar to the MySQL storage module, this module works with MySQL or MariaDB databases. But different to the MySQL module, it only works with articles returned from the 
+Rss crawler
+.
+
+
+For every passed article the module looks for an older version in the database and updates the Fields if certain time has passed since the last update/download. 
+This module won't save new articles
+ and is only meant to keep the database up to date.
+
+
+
+
+
+
+Configuration:
+
+To use this module you have to enter the address, the used port and if needed your user credentials into the 
+MySQL section
+ of 
+newscrawler.cfg
+. To setup the used tables simply execute the provided setup script 
+init-db.sql
+. You can also alter the interval articles are updated with the 
+hours_to_pass_for_redownload_by_rss_crawler 
+-parameter in the 
+Crawler section
+
+--- Page: https://github.com/fhamborg/news-please/wiki/PyPI---How-to-upload-a-new-version ---
+
+The following steps need to be performed if you want to publish a new version to PyPI.
+
+
+See 
+https://github.com/fhamborg/NewsMTSC/wiki/PyPI-How-to-upload-a-new-version
+
+--- Page: https://github.com/fhamborg/news-please/wiki/user-guide ---
+
+news-please user guide
+
+
+This guide helps users learn how to use and configure news-please. This guide describes running news-please in CLI mode (with full crawling and extraction). If you want to programmatically use news-please within your Python project, or if you want to extract articles from commoncrawl.org, please refer to the 
+README.md
+.
+
+
+
+
+Basic setup
+
+
+First test run
+
+
+Inspect results stored in Elastic Search
+
+
+Optional arguments
+
+
+Add own URLs
+
+
+Advanced Configuration
+
+
+
+
+Basic setup
+
+
+news-please is a registered PyPi package and can be installed using pip. While news-please runs on both, Python 2.7+ and 3.x, we recommend  Python 3.5 and explain the setup for this version.
+
+
+Windows systems
+
+
+Users of Windows systems may experience problems installing news-please with pip due to missing requirements. Therefore we have to install the required packages manually:
+
+
+
+
+
+
+lxml:
+
+
+
+
+
+
+Go to 
+Christoph's Gohlke's Python page
+ and download the compatible wheel for your system.
+
+(32bit : "lxml-X.X.X-cp35-cp35m-win32.whl"; 64bit: "lxml-X.X.X-cp35-cp35m-win_amd64.whl")
+
+
+
+
+
+
+Open the Windows console and navigate to your Python installation:
+
+
+ C:\Users\USERNAME>cd  C:\Python35  
+
+
+
+
+
+
+
+Install the wheel with the following command:
+
+
+ C:\Python35> pip install lxml-X.X.X-cp35-cp35m-win32.whl  
+
+
+
+
+
+
+
+
+
+
+
+pywin32:
+
+
+
+
+
+
+Download the latest build of 
+pywin32
+.
+
+Make sure you select correct version (matches Python version, 32bit/64bit)
+
+
+
+
+
+
+Execute the installer
+
+
+
+
+
+
+
+
+
+
+Install news-please
+
+
+news-please is a registered PyPi package and can be installed via pip:
+
+
+sudo pip install news-please
+
+
+
+Minimal configuration
+
+
+Before we can start a simple test run we have to check the configuration. news-please will automatically generate a config directory and files if the directory does not exist. The default location is 
+~/news-please/config
+, which can be changed by providing a custom location using the 
+-c
+ parameter.
+
+
+For our first test run we only look at the 
+[Elasticsearch]
+ section.
+
+
+This section handles the the connection to the Elasticsearch database. If you freshly installed Elasticsearch on your system you probably wont need change the configuration. Otherwise you should review the default settings.
+
+
+Address of the Elasticsearch database and the used port:
+
+
+host = localhost
+port = 9200	
+
+
+
+The indices used to store the extracted meta-data:
+
+
+index_current = 'news-please'
+index_archive = 'news-please-archive'
+
+
+
+Credentials used  for Authentication (supports CA-certificates):
+
+
+use_ca_certificates = False'           #If True Authentification is performed 
+ca_cert_path = '/path/to/cacert.pem'  
+client_cert_path = '/path/to/client_cert.pem'  
+client_key_path = '/path/to/client_key.pem'  
+username = 'root'  
+secret = 'password'  
+
+
+
+While not necessary, its highly recommended to change the user-agent. Otherwise, it is likely that the crawler will be blocked from many sites or earlier.
+
+
+USER_AGENT = 'news-please (+http://www.example.com)'
+
+
+
+First test run
+
+
+Be sure to have your server Elasticsearch running. Open a terminal and enter the following code lines:
+
+
+news-please
+
+
+
+If you did not install news-please with 
+pip
+ but checked out the source code, you can also go into the source code directory and run 
+python __main__.py
+.
+Let the programm run  for a minute and terminate it by pressing 
+CTRL+C
+ 
+once
+. Wait for news-please to terminate gracefully instead of pressing 
+CTRL+C
+ multiple times.
+
+
+Inspect results stored in Elasticsearch
+
+
+While it is possible to retrieve data stored in Elasticsearch without any specific tools we recommend ElasticHQ.  In order to use ElasticHQ follow these simple steps:
+
+
+
+
+
+
+Ensure the database is not running!
+
+
+
+
+
+
+Open the configuration file 
+elasticsearch.yml
+ located at either 
+/etc/elasticsearch/
+ or
+
+at 
+./elasticsearch/conf/
+ if downloaded as archive.
+
+
+
+
+
+
+Add the following lines at the bottom of the file:
+
+
+ http.cors.enabled : true  
+ http.cors.allow-origin : "*"
+ http.cors.allow-methods : OPTIONS, HEAD, GET, POST, PUT, DELETE
+ http.cors.allow-headers : X-Requested-With,X-Auth-Token,Content-Type, Content-Length
+
+
+
+
+
+
+
+Save the configuration file and start Elasticsearch again.
+
+
+
+
+
+
+Go to 
+ElasticHQ
+ and chose your preferred version of the tool (Cloud/Plugin/Download).
+
+
+
+
+
+
+Enter the address of your database and press 
+Connect
+. Now you should be able to see the previously defined indices and the number of articles stored within them.
+
+
+
+
+
+
+Optional arguments
+
+
+news-please supports optional arguments that can be passed when starting the crawler. Start news-please with the 
+-h
+ parameter to see them.
+
+
+Add own URLs
+
+
+To add your own websites you have to either edit 
+sitelist.hjson
+  or create a new file and register it within the configuration. Both files are located in config directory.
+
+
+If you want to created a new input file you have to add the path to the 
+[Files]
+ section of 
+config.cfg
+:
+
+
+url_input_file_name = sitelist.hjson
+
+
+
+sitelist.hjson
+
+
+The input file consists of one array called 
+base_urls
+ and each entry represents one website to be crawled:
+
+
+{
+	 "base_urls" : [
+		{
+			"url": "http://www.faz.net/",
+			"crawler": "RecursiveCrawler",
+			"overwrite_heuristics": {
+			  "meta_contains_article_keyword": true,
+			  "og_type": true,
+			  "linked_headlines": true,
+			  "self_linked_headlines": false
+			  },
+			"pass_heuristics_condition": "meta_contains_article_keyword or (og_type and linked_headlines)"
+		},
+		{
+			"url": "http://www.nytimes.com/",
+			"crawler": "RssCrawler",
+			"daemonize": 3600
+		},
+		...
+		
+	]
+}
+
+
+
+Direct URL download and extraction
+
+
+news-please also supports direct URL download, i.e., you can define a list of URLs each pointing to an actual article that should just be downloaded and extracted.
+
+
+# Furthermore this is first of all the actual config file, but as default just filled with examples.
+{
+  # Every URL has to be in an array-object in "base_urls".
+  # The same URL in combination with the same crawler may only appear once in this array.
+  "base_urls" : [
+    {
+      "crawler": "Download",
+      "url": [
+        # Cubs win Championship ~03.11.2016
+        "http://www.dailymail.co.uk/news/article-3899956/Chicago-Cubs-win-World-Series-epic-Game-7-showdown-Cleveland.html",
+        "http://www.mirror.co.uk/sport/other-sports/american-sports/chicago-cubs-win-world-series-9185077",
+        "https://www.theguardian.com/sport/2016/nov/03/world-series-game-7-chicago-cubs-cleveland-indians-mlb",
+        "http://www.telegraph.co.uk/baseball/2016/11/03/chicago-cubs-break-108-year-curse-of-the-billy-goat-winning-worl/",
+        "https://www.thesun.co.uk/sport/othersports/2106710/chicago-cubs-win-world-series-hillary-clinton-bill-murray-and-barack-obama-lead-celebrations-as-cubs-end-108-year-curse/",
+        "http://www.bbc.com/sport/baseball/37857919"
+      ],
+
+      "overwrite_heuristics": {
+        "meta_contains_article_keyword": true,
+        "og_type": false,
+        "linked_headlines": false,
+        "self_linked_headlines": false
+      }
+    }
+
+
+
+Website Object
+
+
+The entries within 
+base_urls
+ may have up to four parameters defining the start point,  the used crawler and the heuristics used to detect articles:
+
+
+
+
+
+
+url
+: (string)
+
+A String defining the root URL to start crawling e.g. 
+"http://example.com"
+ .
+
+
+
+
+Optional Parameters:
+
+
+
+
+
+
+crawler
+: (string)
+
+The crawler used to collect the data. For all implemented crawlers see 
+crawlers
+.
+
+
+
+
+
+
+overwrite_heuristics
+: (dictionary, containing mixed types)
+
+This overwrites the default heuristics used to detect sites containing an article.
+news-please expects a dict containing heuristic names as keys and as value the condition necessary for articles to pass the heuristic.
+
+
+Depending on the return value of a heuristic, the condition can be  a bool, a string, an int or a float.
+
+
+
+
+bool:
+
+Acceptable conditions are 
+True
+ and 
+False
+, 
+but
+ 
+False
+ 
+will disable the heuristic!
+
+
+
+
+string:
+
+Acceptable conditions are simple strings: 
+"string_heuristic": "matched_value"
+
+
+
+
+float/int:
+
+Acceptable conditions are strings that may contain one equality operator (
+<
+, 
+>
+, 
+<=
+, 
+>=
+,
+=
+) and a number, e.g. 
+"linked_headlines": "<=0.65"
+.
+
+
+Do not put spaces between the equality operator an the number!
+
+
+
+
+
+
+For all implemented heuristic and their supported conditions see 
+heuristics
+.
+
+
+
+
+
+
+pass_heuristics_condition
+: (string)
+
+This overwrites the default boolean expression defining the evaluation of the used heuristics. After all heuristics are tested and returned 
+True
+ or 
+False
+, this expression will be checked.
+
+
+It may contain any heuristics-name (e.g. 
+og_type
+, 
+overwrite_heuristics
+), the boolean operators (e.g. 
+and
+, 
+or
+, 
+not
+) and parentheses (
+(
+, 
+)
+).
+
+
+To disable a heuristic you can either set the condition 
+False
+ or skip it in 
+pass_heuristics_condition
+.
+
+
+
+
+
+
+daemonize
+: (int)
+
+If this parameter is set, the crawler will be started as a daemon. The value defines the seconds the crawler waits until scraping the target again. This parameter is 
+only supported by
+ the 
+RSSCrawler
+.
+
+
+
+
+
+
+additional_rss_daemonize
+: (int)
+
+If this parameter is set, an additional 
+RSSCrawler
+ is spawned for the same target. The value defines the seconds the crawler waits until scraping the target again. This parameter is 
+not supported by
+ the 
+RSSCrawler
+.
+
+
+
+
+
+
+Advanced Configuration
+
+
+This guide covers most of the standard use cases, if your interested in more specialized configurations visit:
+
+
+
+
+news-please pipeline
+
+
+news-please configuration
+
+
+developer guide
+
