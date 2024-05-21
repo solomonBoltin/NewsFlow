@@ -1,6 +1,7 @@
 from urllib.parse import urlsplit
 
 import base64
+import os
 
 
 def url_path_to_filename(url: str):
@@ -21,7 +22,6 @@ def test_url_path_to_filename():
     assert url == n_url
 
 
-
 def url_to_filename(url):
     return url.split("//")[1].split("/")[0].replace(".", "_")
 
@@ -30,3 +30,10 @@ def extract_base_url(url):
     # from beginning to first slash that is not part of http:// or https://
     return url[:url.find("/", 8)]
     # return urlsplit(url).netloc
+
+
+def storage_path():
+    if not os.path.exists("storage"):
+        os.mkdir("storage")
+
+    return f"storage"

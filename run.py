@@ -19,11 +19,11 @@ handler = logging.StreamHandler()
 handler.setFormatter(ActorLogFormatter(include_logger_name=True))
 
 actor_logger = logging.getLogger('actor')
-actor_logger.setLevel(logging.DEBUG)
+actor_logger.setLevel(logging.INFO)
 actor_logger.addHandler(handler)
 
 apify_logger = logging.getLogger('apify')
-apify_logger.setLevel(logging.DEBUG)
+apify_logger.setLevel(logging.INFO)
 apify_logger.addHandler(handler)
 
 

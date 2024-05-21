@@ -1,12 +1,13 @@
 import json
 import logging
+import os
 from os import path
 
 from bs4 import BeautifulSoup
 
 from src.ask_llm.__init__ import ask_llm
 from src.scrap.tree_selectors import get_parents, find_by_parents, extract_tag_tree
-from src.utils.__init__ import url_to_filename
+from src.utils.__init__ import url_to_filename, storage_path
 
 logger = logging.getLogger("actor").getChild("article_preview_element_processor")
 
@@ -105,8 +106,15 @@ def extract_articles_selectors(html_element):
     return {}
 
 
+def element_map_path():
+    if not path.exists(f"./{storage_path()}/element_maps"):
+        os.mkdir(f"./{storage_path()}/element_maps")
+
+    return f"./{storage_path()}/element_maps"
+
+
 def save_element_tree_map_to_cache(base_url, tree, map):
-    filename = f"./storage/article_preview_map/{url_to_filename(base_url)}.json"
+    filename = f"{element_map_path()}/{url_to_filename(base_url)}.json"
     try:
         if path.exists(filename):
             with open(filename, "r") as f:
@@ -124,7 +132,7 @@ def save_element_tree_map_to_cache(base_url, tree, map):
 
 
 def load_element_tree_map_from_cache(base_url, tree):
-    filename = f"./storage/article_preview_map/{url_to_filename(base_url)}.json"
+    filename = f"{element_map_path()}/{url_to_filename(base_url)}.json"
     try:
         with open(filename, "r") as f:
             js = json.load(f)

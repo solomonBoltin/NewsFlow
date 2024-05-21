@@ -1,10 +1,11 @@
 import json
 import logging
+import os
 from time import sleep
 
 from src.ask_llm.llm_tasks.top_15_sections import ask_ai_on_top_15_sections
 from src.scrap.__init__ import get_html, clean_html
-from src.utils.__init__ import url_to_filename
+from src.utils.__init__ import url_to_filename, storage_path
 from src.website_context.find_article_preview_elements import find_article_preview_elements
 from src.website_context.find_sections import find_sections
 
@@ -66,7 +67,7 @@ class WebsiteContext:
 
     @property
     def file_path(self):
-        return f"./storage/websites_context/{url_to_filename(self.base_url)}.json"
+        return f"{website_context_path()}/{url_to_filename(self.base_url)}.json"
 
     @property
     def context(self):
@@ -85,6 +86,11 @@ class WebsiteContext:
         return self.context["article_elements"]
 
 
+def website_context_path():
+    if not os.path.exists(f"./{storage_path()}/websites_context"):
+        os.mkdir(f"./{storage_path()}/websites_context")
+
+    return f"./{storage_path()}/websites_context"
 
 
 def main():

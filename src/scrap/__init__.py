@@ -1,8 +1,11 @@
 import logging
+import os
 
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.options import Options
+
+from src.utils import storage_path
 
 logger = logging.getLogger('actor').getChild("scrap_tools")
 
@@ -103,11 +106,17 @@ def get_html(url, cache=False, clean=False):
         return ""
 
 
+def htmls_path():
+    if not os.path.exists(f"./{storage_path()}/htmls"):
+        os.mkdir(f"./{storage_path()}/htmls")
+    return f"./{storage_path()}/htmls"
+
+
 def save_html(html, filename):
-    with open(f"./storage/htmls/{filename}", "w", encoding="utf-8") as file:
+    with open(f"{htmls_path()}/{filename}", "w", encoding="utf-8") as file:
         file.write(html)
 
 
 def load_html(filename):
-    with open(f"./storage/htmls/{filename}", "r", encoding="utf-8") as file:
+    with open(f"{htmls_path()}/{filename}", "r", encoding="utf-8") as file:
         return file.read()
