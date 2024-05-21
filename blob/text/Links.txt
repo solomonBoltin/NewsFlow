@@ -1,0 +1,1047 @@
+The Verge Website URLs:
+Based on the provided HTML, here's a breakdown of the standardized URLs for different sections and content categories within The Verge website:
+Base URL: https://www.theverge.com/
+Main Navigation Sections:
+Tech: https://www.theverge.com/tech
+Reviews: https://www.theverge.com/reviews
+Science: https://www.theverge.com/science
+Entertainment: https://www.theverge.com/entertainment
+AI: https://www.theverge.com/ai-artificial-intelligence
+Additional Sections (from "More" menu):
+Creators: https://www.theverge.com/creators
+Transportation: (likely under Tech)
+Policy: (likely under Tech)
+Design: (likely under Tech or Style)
+Climate: https://www.theverge.com/climate-change
+Space: (likely under Science)
+Energy: (likely under Tech or Climate)
+Health: (likely under Science)
+Video: (likely under Entertainment or Tech)
+Subcategories and Specific Content:
+The provided HTML snippet showcases several articles and categories within the river of content on the homepage. These include:
+Peloton: https://www.theverge.com/c/24105625/peloton-bike-tread-plus-business-valuation-history
+Fallout TV Show: https://www.theverge.com/24124538/fallout-cast-interview-amazon-prime-video
+Beeper App: https://www.theverge.com/2024/4/9/24124179/beeper-app-automattic-acquisition-matrix-messaging
+Star Wars Outlaws: https://www.theverge.com/24121150/star-wars-outlaws-trailer-release-date
+The Beast (Movie): https://www.theverge.com/24124526/the-beast-bertrand-bonello-interview-lea-seydoux
+Google Vids: https://www.theverge.com/2024/4/9/24124168/google-vids-video-ai-workspace-app
+Apple Vision Pro: https://www.theverge.com/2024/4/8/24124534/supercut-netflix-vision-pro-app-4k-dolby-atmos-vision-visionos
+Buying Guides: https://www.theverge.com/this-is-my-next
+Best iPad: https://www.theverge.com/23639378/best-ipad-apple-buy-model-price
+Aboard App: https://www.theverge.com/2024/4/9/24124480/aboard-app-ai-bookmarks-project-management
+Climate Change Ruling: https://www.theverge.com/2024/4/9/24125087/international-human-rights-court-judgement-climate-change-case
+Fairbuds Earbuds: https://www.theverge.com/2024/4/9/24125089/fairbuds-fairphone-noise-canceling-earbuds-battery-replace-repairability
+Decoder Podcast: https://www.theverge.com/decoder-podcast-with-nilay-patel
+Meta Quest 3: https://www.theverge.com/2024/4/9/24125090/meta-quest-3-v64-software-update-lying-down-mode-passthrough-video-external-microphone
+Logitech Keyboard: https://www.theverge.com/2024/4/9/24125017/logitech-g-pro-x-60-wireless-gaming-keyboard-price-release-date
+Apple Watch Ban: https://www.theverge.com/2024/4/5/24122407/apple-watch-masimo-itc-appeal-smartwatch-wearables
+Universal Broadband Access: https://www.theverge.com/2024/4/5/24121022/universal-broadband-access-fcc-usf-acp
+Additional Notes:
+The Verge's content is often categorized by company (e.g., Apple, Google) or specific product (e.g., iPhone, Pixel Buds Pro).
+The website features a Storystream that dynamically updates with the latest news and articles.
+This list is based on the provided HTML and may not be exhaustive.
+
+
+
+Reuters Website URLs:
+Based on the provided HTML, here's a breakdown of the standardized URLs for different sections and content categories within the Reuters news website:
+Base URL: https://www.reuters.com/
+Main Sections:
+World: https://www.reuters.com/world/
+Africa: https://www.reuters.com/world/africa/
+Americas: https://www.reuters.com/world/americas/
+Asia Pacific: https://www.reuters.com/world/asia-pacific/
+China: https://www.reuters.com/world/china/
+Europe: https://www.reuters.com/world/europe/
+India: https://www.reuters.com/world/india/
+Israel and Hamas at War: https://www.reuters.com/world/israel-hamas/
+Japan: https://www.reuters.com/world/japan/
+Middle East: https://www.reuters.com/world/middle-east/
+United Kingdom: https://www.reuters.com/world/uk/
+Ukraine and Russia at War: https://www.reuters.com/world/ukraine-russia-war/
+United States: https://www.reuters.com/world/us/
+US Elections: https://www.reuters.com/world/us/elections/
+Reuters Next: https://www.reuters.com/world/reuters-next/
+Business: https://www.reuters.com/business/
+Aerospace & Defense: https://www.reuters.com/business/aerospace-defense/
+Autos & Transportation: https://www.reuters.com/business/autos-transportation/
+Davos: https://www.reuters.com/business/davos/
+Energy: https://www.reuters.com/business/energy/
+Environment: https://www.reuters.com/business/environment/
+Finance: https://www.reuters.com/business/finance/
+Healthcare & Pharmaceuticals: https://www.reuters.com/business/healthcare-pharmaceuticals/
+Media & Telecom: https://www.reuters.com/business/media-telecom/
+Retail & Consumer: https://www.reuters.com/business/retail-consumer/
+Future of Health: https://www.reuters.com/business/future-of-health/
+Future of Money: https://www.reuters.com/business/future-of-money/
+Take Five: https://www.reuters.com/business/take-five/
+World at Work: https://www.reuters.com/business/world-at-work/
+Markets: https://www.reuters.com/markets/
+Asian Markets: https://www.reuters.com/markets/asia/
+Carbon Markets: https://www.reuters.com/markets/carbon/
+Commodities: https://www.reuters.com/markets/commodities/
+Currencies: https://www.reuters.com/markets/currencies/
+Deals: https://www.reuters.com/markets/deals/
+Emerging Markets: https://www.reuters.com/markets/emerging/
+ETFs: https://www.reuters.com/markets/etf/
+European Markets: https://www.reuters.com/markets/europe/
+Funds: https://www.reuters.com/markets/funds/
+Global Market Data: https://www.reuters.com/markets/global-market-data/
+Rates & Bonds: https://www.reuters.com/markets/rates-bonds/
+Stocks: https://www.reuters.com/markets/stocks/
+U.S. Markets: https://www.reuters.com/markets/us/
+Wealth: https://www.reuters.com/markets/wealth/
+Macro Matters: https://www.reuters.com/markets/macromatters/
+Sustainability: https://www.reuters.com/sustainability/
+Boards, Policy & Regulation: https://www.reuters.com/sustainability/boards-policy-regulation/
+Climate & Energy: https://www.reuters.com/sustainability/climate-energy/
+Land Use & Biodiversity: https://www.reuters.com/sustainability/land-use-biodiversity/
+Society & Equity: https://www.reuters.com/sustainability/society-equity/
+Sustainable Finance & Reporting: https://www.reuters.com/sustainability/sustainable-finance-reporting/
+The Switch: https://www.reuters.com/sustainability/the-switch/
+Reuters Impact: https://www.reuters.com/sustainability/reuters-impact/
+Additional Sections:
+Legal: https://www.reuters.com/legal/
+Government: https://www.reuters.com/legal/government/
+Legal Industry: https://www.reuters.com/legal/legalindustry/
+Litigation: https://www.reuters.com/legal/litigation/
+Transactional: https://www.reuters.com/legal/transactional/
+US Supreme Court: https://www.reuters.com/legal/us-supreme-court/
+Breakingviews: https://www.reuters.com/breakingviews/
+Predictions: https://www.reuters.com/breakingviews/predictions/
+Technology: https://www.reuters.com/technology/
+Cybersecurity: https://www.reuters.com/technology/cybersecurity/
+Space: https://www.reuters.com/technology/space/
+Disrupted: https://www.reuters.com/technology/disrupted/
+Reuters Momentum: https://www.reuters.com/technology/reuters-momentum/
+Investigations: https://www.reuters.com/investigates/
+Sports: https://www.reuters.com/sports/
+Athletics: https://www.reuters.com/sports/athletics/
+Baseball: https://www.reuters.com/sports/baseball/
+Basketball: https://www.reuters.com/sports/basketball/
+Cricket: https://www.reuters.com/sports/cricket/
+Cycling: https://www.reuters.com/sports/cycling/
+Formula 1: https://www.reuters.com/sports/formula1/
+Golf: https://www.reuters.com/sports/golf/
+NFL: https://www.reuters.com/sports/nfl/
+NHL: https://www.reuters.com/sports/nhl/
+Soccer: https://www.reuters.com/sports/soccer/
+Tennis: https://www.reuters.com/sports/tennis/
+Science: https://www.reuters.com/science/
+Lifestyle: https://www.reuters.com/lifestyle/
+Graphics: https://www.reuters.com/graphics/
+Pictures: https://www.reuters.com/pictures/
+Podcasts: https://www.reuters.com/podcasts/
+Fact Check: https://www.reuters.com/fact-check/
+Video: https://www.reuters.com/video/
+Sponsored Content: https://www.reuters.com/sponsored/
+Reuters Plus: https://www.reuters.com/sponsored/reuters-plus/
+Coupons: https://www.reuters.com/coupons/
+Please note: This list is based on the provided HTML and may not be exhaustive. There might be additional sections and categories on the Reuters website.
+
+
+CNN Website URLs:
+Based on the provided HTML, here's a breakdown of the standardized URLs for different sections and content categories within the CNN news website:
+Base URL: https://edition.cnn.com/
+Main Navigation Sections:
+US: https://edition.cnn.com/us
+World: https://edition.cnn.com/world
+Africa: https://edition.cnn.com/world/africa
+Americas: https://edition.cnn.com/world/americas
+Asia: https://edition.cnn.com/world/asia
+Australia: https://edition.cnn.com/world/australia
+China: https://edition.cnn.com/world/china
+Europe: https://edition.cnn.com/world/europe
+India: https://edition.cnn.com/world/india
+Middle East: https://edition.cnn.com/world/middle-east
+United Kingdom: https://edition.cnn.com/world/united-kingdom
+Politics: https://edition.cnn.com/politics
+Supreme Court (SCOTUS): https://www.cnn.com/politics/supreme-court
+Congress: https://www.cnn.com/politics/congress
+Facts First: https://www.cnn.com/politics/fact-check
+2024 Elections: https://www.cnn.com/election/2024
+Business: https://edition.cnn.com/business
+Markets: https://edition.cnn.com/markets
+Tech: https://edition.cnn.com/business/tech
+Media: https://edition.cnn.com/business/media
+Success: (embedded within Business)
+Investing: https://edition.cnn.com/business/investing
+Opinion: https://edition.cnn.com/opinions
+Health: https://edition.cnn.com/health
+Wellness: (embedded within Health)
+Life, But Better: https://edition.cnn.com/interactive/life-but-better/
+Fitness: https://edition.cnn.com/specials/health/fitness-life-but-better
+Food: https://edition.cnn.com/specials/health/food-life-but-better
+Sleep: https://edition.cnn.com/specials/health/sleep-life-but-better
+Mindfulness: https://edition.cnn.com/specials/health/mindfulness-life-but-better
+Relationships: https://edition.cnn.com/specials/health/relationships-life-but-better
+Entertainment: https://edition.cnn.com/entertainment
+Movies: https://edition.cnn.com/entertainment/movies
+Television: https://edition.cnn.com/entertainment/tv-shows
+Celebrity: https://edition.cnn.com/entertainment/celebrities
+Style: https://edition.cnn.com/style
+Arts: https://edition.cnn.com/style/arts
+Design: https://edition.cnn.com/style/design
+Fashion: https://edition.cnn.com/style/fashion
+Architecture: https://edition.cnn.com/style/architecture
+Luxury: https://edition.cnn.com/style/luxury
+Beauty: https://edition.cnn.com/style/beauty
+Travel: https://edition.cnn.com/travel
+Destinations: https://edition.cnn.com/travel/destinations
+Food & Drink: https://edition.cnn.com/travel/food-and-drink
+Stay: https://edition.cnn.com/travel/stay
+News: https://edition.cnn.com/travel/news
+Aviation: (embedded within Travel)
+Sports: https://edition.cnn.com/sport
+Football: https://edition.cnn.com/sport/football
+Tennis: https://edition.cnn.com/sport/tennis
+Golf: https://edition.cnn.com/sport/golf
+Motorsport: https://edition.cnn.com/sport/motorsport
+US Sports: https://edition.cnn.com/sport/us-sports
+Olympics: https://edition.cnn.com/sport/paris-olympics-2024
+Climbing: https://edition.cnn.com/sport/climbing
+Esports: https://edition.cnn.com/sport/esports
+Watch (Video): https://edition.cnn.com/videos
+Live TV: https://edition.cnn.com/live-tv
+Digital Studios: https://edition.cnn.com/specials/digital-studios
+CNN Films: https://edition.cnn.com/specials/videos/digital-shorts
+HLN: https://edition.cnn.com/specials/videos/hln
+TV Schedule: https://edition.cnn.com/tv/schedule/cnn
+TV Shows A-Z: https://edition.cnn.com/specials/tv/all-shows
+CNNVR: https://edition.cnn.com/vr
+Features: https://edition.cnn.com/specials
+As Equals: https://edition.cnn.com/interactive/asequals
+Call to Earth: https://edition.cnn.com/interactive/call-to-earth
+Freedom Project: https://edition.cnn.com/specials/world/freedom-project
+Impact Your World: https://edition.cnn.com/specials/impact-your-world
+Inside Africa: https://edition.cnn.com/specials/africa/inside-africa
+2 Degrees: https://edition.cnn.com/specials/opinions/two-degrees
+CNN Heroes: https://edition.cnn.com/specials/cnn-heroes
+Additional Notes:
+Some sections, like Success and Wellness, are embedded within broader categories like Business and Health, respectively.
+This list is based on the provided HTML and may not be exhaustive. There could be additional sections and categories on the CNN website.
+
+
+
+Business Standard Website URLs:
+Based on the provided HTML, here's a breakdown of the standardized URLs for different sections and content categories within the Business Standard news website:
+Base URL: https://www.business-standard.com/
+Main Navigation Sections:
+Home: https://www.business-standard.com/
+Economy: https://www.business-standard.com/economy
+Finance: https://www.business-standard.com/finance
+Personal Finance: https://www.business-standard.com/finance/personal-finance
+World News: https://www.business-standard.com/world-news
+Latest: https://www.business-standard.com/latest-news
+E-Paper: https://epaper.business-standard.com/
+Today's Paper: https://www.business-standard.com/todays-paper
+Markets: https://www.business-standard.com/markets
+Elections: https://www.business-standard.com/elections/lok-sabha-election/news
+Opinion: https://www.business-standard.com/opinion
+India News: https://www.business-standard.com/india-news
+Portfolio: https://www.business-standard.com/portfolio
+IPL: https://www.business-standard.com/cricket/ipl
+More:
+Technology: https://www.business-standard.com/technology
+Specials: https://www.business-standard.com/specials
+Partner Content: https://www.business-standard.com/content
+Management: https://www.business-standard.com/management
+Multimedia: https://www.business-standard.com/multimedia
+Sports: https://www.business-standard.com/sports
+Cricket: https://www.business-standard.com/cricket
+Industry: https://www.business-standard.com/industry
+Companies: https://www.business-standard.com/companies
+Lifestyle: https://www.business-standard.com/lifestyle
+Entertainment: https://www.business-standard.com/entertainment
+Social Viral: https://www.business-standard.com/social-viral
+Health: https://www.business-standard.com/health
+Books: https://www.business-standard.com/book
+Education: https://www.business-standard.com/education
+BS Apps: https://www.business-standard.com/apps
+Pro Kabaddi League: https://www.business-standard.com/sports/pro-kabaddi-league
+BS Learning: https://bseducation.business-standard.com
+Additional Sections/Features:
+Budget 2024: https://www.business-standard.com/budget
+Nifty 50: https://www.business-standard.com/markets/nse-nifty-indices-20559
+Sensex Today: https://www.business-standard.com/markets/bse-sensex-indices-1001
+Lok Sabha Election 2024: https://www.business-standard.com/elections/lok-sabha-election
+IPL 2024 Schedule: https://www.business-standard.com/cricket/ipl/schedule
+IPL Points Table: https://www.business-standard.com/cricket/ipl/points-table
+Things to know (Search): https://www.business-standard.com/about/
+Please note: This list is based on the provided HTML and might not be exhaustive. There could be additional sections and categories on the Business Standard website.
+
+
+Imaging Technology News Website URLs:
+Based on the provided HTML, here's a breakdown of the standardized URLs for different sections and content categories within the Imaging Technology News website:
+Base URL: https://www.itnonline.com/
+Main Navigation Sections:
+FDA: https://www.itnonline.com/channel/fda
+COVID-19: https://www.itnonline.com/channel/coronavirus-covid-19
+Imaging: https://www.itnonline.com/channel/radiology-imaging
+3-D Printing: https://www.itnonline.com/channel/medical-3-d-printing
+Angiography: https://www.itnonline.com/channel/angiography
+Computed Tomography (CT): https://www.itnonline.com/channel/computed-tomography-ct
+Contrast Media: https://www.itnonline.com/channel/contrast-media
+Digital Radiography (DR): https://www.itnonline.com/channel/digital-radiography-dr
+Magnetic Resonance Imaging (MRI): https://www.itnonline.com/channel/magnetic-resonance-imaging-mri
+Molecular Imaging: https://www.itnonline.com/channel/molecular-imaging
+Pediatric Imaging: https://www.itnonline.com/channel/pediatric-imaging
+Radiation Dose Management: https://www.itnonline.com/channel/radiation-dose-management
+Radiographic Fluoroscopy (RF): https://www.itnonline.com/channel/radiographic-fluoroscopy-rf
+Ultrasound Imaging: https://www.itnonline.com/channel/ultrasound-imaging
+Mammography: https://www.itnonline.com/channel/mammography
+X-Ray: https://www.itnonline.com/channel/x-ray
+Information Technology: https://www.itnonline.com/channel/information-technology
+Advanced Visualization: https://www.itnonline.com/channel/advanced-visualization
+Analytics Software: https://www.itnonline.com/channel/analytics-software
+Archive/Cloud Storage: https://www.itnonline.com/channel/archive-cloud-storage
+Artificial Intelligence: https://www.itnonline.com/channel/artificial-intelligence
+Clinical Decision Support: https://www.itnonline.com/channel/clinical-decision-support
+Digital Pathology: https://www.itnonline.com/channel/digital-pathology
+Enterprise Imaging: https://www.itnonline.com/channel/enterprise-imaging
+Flat Panel Displays: https://www.itnonline.com/channel/flat-panel-displays
+Imaging Software Development: https://www.itnonline.com/channel/imaging-software-development
+PACS: https://www.itnonline.com/channel/pacs
+Population Health: https://www.itnonline.com/channel/population-health
+Remote Viewing Systems: https://www.itnonline.com/channel/remote-viewing-systems
+Teleradiology: https://www.itnonline.com/channel/teleradiology
+Vendor Neutral Archives (VNA): https://www.itnonline.com/channel/vendor-neutral-archive-vna
+Women's Health: https://www.itnonline.com/channel/womens-health
+Breast Biopsy Systems: https://www.itnonline.com/channel/breast-biopsy-systems
+Breast Density: https://www.itnonline.com/channel/breast-density
+Breast Imaging: https://www.itnonline.com/channel/breast-imaging
+Breast MRI: https://www.itnonline.com/channel/mri-breast
+Ultrasound Women's Health: https://www.itnonline.com/channel/ultrasound-womens-health
+Radiation Oncology: https://www.itnonline.com/channel/radiation-oncology
+Oncology Information Management Systems (OIMS): https://www.itnonline.com/channel/oncology-information-management-systems-oims
+Patient Positioning: https://www.itnonline.com/channel/patient-positioning-general-radiology
+Proton Therapy: https://www.itnonline.com/channel/proton-therapy
+Radiation Therapy: https://www.itnonline.com/channel/radiation-therapy
+Treatment Planning: https://www.itnonline.com/channel/treatment-planning
+Video: https://www.itnonline.com/videos
+Webinars: https://www.itnonline.com/webinars
+Conference Coverage: https://www.itnonline.com/channel/conference-coverage
+AAPM: https://www.itnonline.com/channel/aapm
+ACC: https://www.itnonline.com/channel/acc
+ACR: https://www.itnonline.com/channel/acr
+AHRA: https://www.itnonline.com/channel/ahra
+AIMed: https://www.itnonline.com/channel/aimed
+ARRS: https://www.itnonline.com/channel/arrs
+ASTRO: https://www.itnonline.com/channel/astro
+ECR: https://www.itnonline.com/channel/ecr
+HIMSS: https://www.itnonline.com/channel/himss
+RSNA: https://www.itnonline.com/channel/rsna
+SBI: https://www.itnonline.com/channel/society-breast-imaging-sbi
+SCCT: https://www.itnonline.com/channel/scct
+SIIM: https://www.itnonline.com/channel/siim
+SIR: https://www.itnonline.com/channel/sir
+SNMMI: https://www.itnonline.com/channel/snmmi
+Blogs: https://www.itnonline.com/blogs
+Blog Series: https://www.itnonline.com/blog-series
+Other Features/Resources:
+Photo Galleries: https://www.itnonline.com/gallery
+Podcasts: https://www.itnonline.com/channel/podcasts
+Comparison Charts: https://www.itnonline.com/comparison-charts
+Calendar: https://www.itnonline.com/events
+360 Photos: https://www.itnonline.com/channel/360-view-photos
+Case Studies: https://www.itnonline.com/case-studies
+Buyer's Guide: https://www.itnonline.com/buyers-guide
+Additional Notes:
+The URL structure seems to rely heavily on dynamic content and JavaScript, so extracting all URLs might require additional methods beyond parsing the static HTML.
+There are several sponsored content and webinar sections interspersed within the main content.
+
+
+New York Times Website URLs:
+Based on the provided HTML, here's a breakdown of the standardized URLs for different sections and content categories within the New York Times website:
+Base URL: https://www.nytimes.com/
+Main Navigation Sections:
+U.S.: https://www.nytimes.com/section/us
+Politics: https://www.nytimes.com/section/politics
+2024 Elections: https://www.nytimes.com/news-event/2024-election
+Primary Results: https://www.nytimes.com/interactive/2024/us/elections/republican-primary-delegates-tracker-calendar.html
+Supreme Court: https://www.nytimes.com/topic/organization/us-supreme-court
+Congress: https://www.nytimes.com/topic/organization/us-congress
+Biden Administration: https://www.nytimes.com/spotlight/joe-biden
+New York: https://www.nytimes.com/section/nyregion
+California: https://www.nytimes.com/column/california-today
+Education: https://www.nytimes.com/section/education
+Health: https://www.nytimes.com/section/health
+Obituaries: https://www.nytimes.com/section/obituaries
+Science: https://www.nytimes.com/section/science
+Climate: https://www.nytimes.com/section/climate
+Sports: https://www.nytimes.com/section/sports
+Business: https://www.nytimes.com/section/business
+Tech: https://www.nytimes.com/section/technology
+The Upshot: https://www.nytimes.com/section/upshot
+The Magazine: https://www.nytimes.com/section/magazine
+World: https://www.nytimes.com/section/world
+Africa: https://www.nytimes.com/section/world/africa
+Americas: https://www.nytimes.com/section/world/americas
+Asia: https://www.nytimes.com/section/world/asia
+Australia: https://www.nytimes.com/section/world/australia
+Canada: https://www.nytimes.com/section/world/canada
+Europe: https://www.nytimes.com/section/world/europe
+Middle East: https://www.nytimes.com/section/world/middleeast
+Science: https://www.nytimes.com/section/science
+Climate: https://www.nytimes.com/section/climate
+Health: https://www.nytimes.com/section/health
+Obituaries: https://www.nytimes.com/section/obituaries
+Business: https://www.nytimes.com/section/business
+Tech: https://www.nytimes.com/section/technology
+Economy: https://www.nytimes.com/section/business/economy
+Media: https://www.nytimes.com/section/business/media
+Finance and Markets: https://www.nytimes.com/section/markets-overview
+DealBook: https://www.nytimes.com/section/business/dealbook
+Personal Tech: https://www.nytimes.com/section/technology/personaltech
+Energy Transition: https://www.nytimes.com/section/business/energy-environment
+Your Money: https://www.nytimes.com/section/your-money
+Arts: https://www.nytimes.com/section/arts
+Books: https://www.nytimes.com/section/books
+Best Sellers: https://www.nytimes.com/books/best-sellers
+Dance: https://www.nytimes.com/section/arts/dance
+Movies: https://www.nytimes.com/section/movies
+Music: https://www.nytimes.com/section/arts/music
+Television: https://www.nytimes.com/section/arts/television
+Theater: https://www.nytimes.com/section/theater
+Pop Culture: https://www.nytimes.com/spotlight/pop-culture
+T Magazine: https://www.nytimes.com/section/t-magazine
+Visual Arts: https://www.nytimes.com/section/arts/design
+Lifestyle: https://www.nytimes.com/spotlight/lifestyle
+Well: https://www.nytimes.com/section/well
+Eat: https://www.nytimes.com/section/well/eat
+Move: https://www.nytimes.com/section/well/move
+Mind: https://www.nytimes.com/section/well/mind
+Family: https://www.nytimes.com/section/well/family
+Live: https://www.nytimes.com/section/well/live
+Ask Well: https://www.nytimes.com/column/ask-well
+Travel: https://www.nytimes.com/section/travel
+Style: https://www.nytimes.com/section/style
+Real Estate: https://www.nytimes.com/section/realestate
+Food: https://www.nytimes.com/section/food
+Fashion: https://www.nytimes.com/section/fashion
+Love: https://www.nytimes.com/section/fashion/weddings
+Your Money: https://www.nytimes.com/section/your-money
+Personal Tech: https://www.nytimes.com/section/technology/personaltech
+T Magazine: https://www.nytimes.com/section/t-magazine
+Opinion: https://www.nytimes.com/section/opinion
+Guest Essays: https://www.nytimes.com/section/opinion/contributors
+Editorials: https://www.nytimes.com/section/opinion/editorials
+Op-Docs: https://www.nytimes.com/column/op-docs
+Videos: https://www.nytimes.com/spotlight/opinion-video
+Letters: https://www.nytimes.com/section/opinion/letters
+Audio: https://www.nytimes.com/spotlight/podcasts
+The Headlines: https://www.nytimes.com/column/the-headlines
+The Daily: https://www.nytimes.com/column/the-daily
+Hard Fork: https://www.nytimes.com/column/hard-fork
+The Ezra Klein Show: https://www.nytimes.com/column/ezra-klein-podcast
+Matter of Opinion: https://www.nytimes.com/column/matter-of-opinion
+Serial Productions: https://www.nytimes.com/interactive/2022/podcasts/serial-productions.html
+The Book Review Podcast: https://www.nytimes.com/column/book-review-podcast
+Modern Love: https://www.nytimes.com/column/modern-love-podcast
+The Run-Up: https://www.nytimes.com/column/election-run-up-podcast
+Popcast: https://www.nytimes.com/column/popcast-pop-music-podcast
+Reporter Reads: https://www.nytimes.com/spotlight/reporter-reads
+The Sunday Read: https://www.nytimes.com/spotlight/the-sunday-read
+Games: https://www.nytimes.com/crosswords
+Spelling Bee: https://www.nytimes.com/puzzles/spelling-bee
+The Mini Crossword: https://www.nytimes.com/crosswords/game/mini
+Wordle: https://www.nytimes.com/games/wordle/index.html
+The Crossword: https://www.nytimes.com/crosswords/game/daily/
+Vertex: https://www.nytimes.com/puzzles/vertex
+Connections: https://www.nytimes.com/games/connections
+Sudoku: https://www.nytimes.com/puzzles/sudoku
+Letter Boxed: https://www.nytimes.com/puzzles/letter-boxed
+Tiles: https://www.nytimes.com/puzzles/tiles
+Cooking: https://cooking.nytimes.com/
+Easy: https://cooking.nytimes.com/topics/easy-recipes
+Dinner: https://cooking.nytimes.com/topics/dinner-recipes
+Quick: https://cooking.nytimes.com/68861692-nyt-cooking/43843372-quick-recipes
+Healthy: https://cooking.nytimes.com/topics/healthy-recipes
+Breakfast: https://cooking.nytimes.com/topics/healthy-recipes
+Vegetarian: https://cooking.nytimes.com/topics/vegetarian
+Vegan: https://cooking.nytimes.com/topics/vegan-recipes
+Chicken: https://cooking.nytimes.com/topics/our-best-chicken-recipes
+Pasta: https://cooking.nytimes.com/topics/our-best-pasta-recipes
+Dessert: https://cooking.nytimes.com/topics/desserts
+Wirecutter: https://www.nytimes.com/wirecutter/
+Kitchen: https://www.nytimes.com/wirecutter/kitchen-dining/
+Tech: https://www.nytimes.com/wirecutter/electronics/
+Sleep: https://www.nytimes.com/wirecutter/sleep/
+Appliances: https://www.nytimes.com/wirecutter/appliances/
+Home and Garden: https://www.nytimes.com/wirecutter/home-garden/
+Moving: https://www.nytimes.com/wirecutter/make-a-plan/moving/
+Travel: https://www.nytimes.com/wirecutter/travel/
+Gifts: https://www.nytimes.com/wirecutter/gifts/
+Deals: https://www.nytimes.com/wirecutter/deals/
+Baby and Kid: https://www.nytimes.com/wirecutter/baby-kid/
+Health and Fitness: https://www.nytimes.com/wirecutter/health-fitness/
+The Athletic: https://theathletic.com/
+NFL: https://theathletic.com/nfl/
+MLB: https://theathletic.com/mlb/
+NBA: https://theathletic.com/nba/
+Premier League: https://theathletic.com/football/premier-league/
+NCAAF: https://theathletic.com/college-football/
+NCAAM: https://theathletic.com/college-basketball/
+NHL: https://theathletic.com/nhl/
+NCAAW: https://theathletic.com/womens-college-basketball/
+MLS: https://theathletic.com/football/mls/
+Formula 1: https://theathletic.com/formula-1/
+NWSL: https://theathletic.com/football/nwsl/
+Golf: https://theathletic.com/golf/
+News: https://theathletic.com/news/
+Additional Features:
+Total Solar Eclipse (Special Coverage): https://www.nytimes.com/live/2024/04/08/science/total-solar-eclipse
+Russia-Ukraine War (Special Coverage): https://www.nytimes.com/news-event/ukraine-russia
+Please Note: This list is based on the provided HTML and may not be exhaustive. There could be additional sections and categories on the New York Times website.
+
+
+Sydney Morning Herald Website URLs:
+Based on the provided HTML, here's a breakdown of the standardized URLs for different sections and content categories within the Sydney Morning Herald website:
+Base URL: https://www.smh.com.au/
+Main Navigation Sections:
+Home: https://www.smh.com.au/
+Sydney: https://www.smh.com.au/sydney-news
+Politics: https://www.smh.com.au/politics
+Federal: https://www.smh.com.au/politics/federal
+NSW: https://www.smh.com.au/politics/nsw
+Victoria: https://www.smh.com.au/politics/victoria
+Queensland: https://www.smh.com.au/politics/queensland
+Western Australia: https://www.smh.com.au/politics/western-australia
+Business: https://www.smh.com.au/business
+Companies: https://www.smh.com.au/business/companies
+Markets: https://www.smh.com.au/business/markets
+Bulls N' Bears: https://www.smh.com.au/business/bullsnbears
+The Economy: https://www.smh.com.au/business/the-economy
+Banking & Finance: https://www.smh.com.au/business/banking-and-finance
+Entrepreneurship: https://www.smh.com.au/business/entrepreneurship
+Media: https://www.smh.com.au/topic/media-and-marketing-5z7
+Workplace: https://www.smh.com.au/business/workplace
+World: https://www.smh.com.au/world
+North America: https://www.smh.com.au/world/north-america
+Europe: https://www.smh.com.au/world/europe
+Asia: https://www.smh.com.au/world/asia
+Middle East: https://www.smh.com.au/world/middle-east
+Oceania: https://www.smh.com.au/world/oceania
+South America: https://www.smh.com.au/world/south-america
+Africa: https://www.smh.com.au/world/africa
+National: https://www.smh.com.au/national
+NSW: https://www.smh.com.au/national/nsw
+Victoria: https://www.smh.com.au/national/victoria
+Queensland: https://www.smh.com.au/national/queensland
+Western Australia: https://www.smh.com.au/national/western-australia
+Opinion: https://www.smh.com.au/opinion
+Property: https://www.smh.com.au/property
+News: https://www.smh.com.au/property/news
+Domain Magazine: https://www.smh.com.au/domain-magazine
+Title Deeds: https://www.smh.com.au/topic/title-deeds-1nq0
+Living: https://www.smh.com.au/property/living
+Auctions: https://www.smh.com.au/topic/auctions-1nq1
+Financing: https://www.smh.com.au/topic/financing-1nq2
+Sport: https://www.smh.com.au/sport
+NRL: https://www.smh.com.au/sport/nrl
+Rugby Union: https://www.smh.com.au/sport/rugby-union
+Cricket: https://www.smh.com.au/sport/cricket
+Soccer: https://www.smh.com.au/sport/soccer
+AFL: https://www.smh.com.au/sport/afl
+Racing: https://www.smh.com.au/sport/racing
+Tennis: https://www.smh.com.au/sport/tennis
+Netball: https://www.smh.com.au/sport/netball
+Basketball: https://www.smh.com.au/sport/basketball
+Motorsport: https://www.smh.com.au/sport/motorsport
+Cycling: https://www.smh.com.au/sport/cycling
+Golf: https://www.smh.com.au/sport/golf
+NFL: https://www.smh.com.au/sport/nfl
+Athletics: https://www.smh.com.au/sport/athletics
+Swimming: https://www.smh.com.au/sport/swimming
+Boxing: https://www.smh.com.au/sport/boxing
+Good Food: https://www.smh.com.au/goodfood
+Eating Out: https://www.smh.com.au/goodfood/sydney-eating-out
+Recipes: https://www.smh.com.au/goodfood/recipes
+Tips & Advice: https://www.smh.com.au/goodfood/tips-and-advice
+Drinks: https://www.smh.com.au/goodfood/drinks
+Lifestyle: https://www.smh.com.au/lifestyle
+Health & Wellness: https://www.smh.com.au/lifestyle/health-and-wellness
+Fashion: https://www.smh.com.au/lifestyle/fashion
+Life & Relationships: https://www.smh.com.au/lifestyle/life-and-relationships
+Beauty: https://www.smh.com.au/lifestyle/beauty
+Style: https://www.smh.com.au/topic/style-luxury-1nij
+Horoscopes: https://www.smh.com.au/topic/horoscopes-5yc
+Traveller: https://www.smh.com.au/traveller
+Destination Guides: https://www.smh.com.au/traveller/inspiration/destination-guides
+Inspiration: https://www.smh.com.au/traveller/inspiration
+Reviews & Advice: https://www.smh.com.au/traveller/reviews-and-advice
+Travel News: https://www.smh.com.au/traveller/travel-news
+Good Weekend: https://www.smh.com.au/good-weekend
+Spectrum: https://www.smh.com.au/topic/spectrum-smh-hog
+Sunday Life: https://www.smh.com.au/sunday-life
+Money: https://www.smh.com.au/money
+Super & Retirement: https://www.smh.com.au/money/super-and-retirement
+Investing: https://www.smh.com.au/money/investing
+Banking: https://www.smh.com.au/money/banking
+Borrowing: https://www.smh.com.au/money/borrowing
+Saving: https://www.smh.com.au/money/saving
+Tax: https://www.smh.com.au/money/tax
+Planning & Budgeting: https://www.smh.com.au/money/planning-and-budgeting
+Insurance: https://www.smh.com.au/money/insurance
+Education: https://www.smh.com.au/education
+Healthcare: https://www.smh.com.au/healthcare
+Environment: https://www.smh.com.au/environment
+Conservation: https://www.smh.com.au/environment/conservation
+Climate change: https://www.smh.com.au/environment/climate-change
+Sustainability: https://www.smh.com.au/environment/sustainability
+Weather: https://www.smh.com.au/environment/weather
+Technology: https://www.smh.com.au/technology
+Video Games: https://www.smh.com.au/technology/video-games
+Home Tech: https://www.smh.com.au/topic/home-technology-hqq
+Phones: https://www.smh.com.au/topic/phones-5zt
+Gadgets: https://www.smh.com.au/topic/gadgets-hqp
+Drive: http://www.drive.com.au
+Additional Sections/Features:
+Today’s Paper: https://www.smh.com.au/todays-newspaper
+Good Food Guide: https://www.smh.com.au/goodfood-guide
+Daily Crosswords & Sudoku: https://www.smh.com.au/puzzles
+Letters: https://www.smh.com.au/topic/smh-letters-1r7
+Editorial: https://www.smh.com.au/topic/smh-editorial-1r6
+Campus: https://www.smh.com.au/australia-higher-education
+Column 8: https://www.smh.com.au/topic/column-8-1r4
+Obituaries: https://www.smh.com.au/topic/obituaries-1qv
+Explainers: https://www.smh.com.au/topic/explainers-1lz9
+Quizzes: https://www.smh.com.au/topic/quizzes-1qx
+Podcasts: https://podcasts.smh.com.au/
+Please note: This list is based on the provided HTML and might not be exhaustive. There could be additional sections and categories on the Sydney Morning Herald website.
+
+
+Globes Website URLs:
+Based on the provided HTML, here's a breakdown of the standardized URLs for different sections and content categories within the Globes news website:
+Base URL: https://www.globes.co.il/en/
+Main Navigation Sections:
+Front: https://www.globes.co.il/en/
+News: https://www.globes.co.il/en/news/
+Comment: https://www.globes.co.il/en/comment/
+Features: https://www.globes.co.il/en/features/
+Market: https://www.globes.co.il/en/market.tag
+Economy: https://www.globes.co.il/en/economy.tag
+Energy: https://www.globes.co.il/en/energy.tag
+Healthcare: https://www.globes.co.il/en/healthcare.tag
+Tech: https://www.globes.co.il/en/it.tag
+Real Estate: https://www.globes.co.il/en/realestate.tag
+Start Ups: https://www.globes.co.il/en/startups.tag
+Additional Sections:
+Aerospace & Defense: https://www.globes.co.il/en/aerospacedefense.tag
+Chemicals & Plastics: https://www.globes.co.il/en/chemicalsnplastics.tag
+Financial Services: https://www.globes.co.il/en/financialservices.tag
+Mergers & Acquisitions: https://www.globes.co.il/en/mergersnacquisitions.tag
+Politics: https://www.globes.co.il/en/politics.tag
+Telecoms, Media & Marketing: https://www.globes.co.il/en/telecomsnmedianmarketing.tag
+Tourism: https://www.globes.co.il/en/tourism.tag
+Transport & Infrastructure: https://www.globes.co.il/en/transportninfrastructure.tag
+Market Data:
+Tel Aviv Stock Exchange: https://www.globes.co.il/serveen/globes/nodeview.asp?fid=4119
+Israeli stocks in NY: https://www.globes.co.il/Finance/Shared/SearchResults.asp?Feeder=1&SearchIdxInst=1&Lang=EN&WhatType=3&TypeID=12&IdxInstrumentID=
+Arbitrage gaps: https://www.globes.co.il/portal/arbitrage/?Lang=en
+Israeli stocks in Europe: https://www.globes.co.il/Finance/Shared/SearchResults.asp?Feeder=1&WhatType=3&TypeID=14&lang=en
+Israeli stocks on other markets: https://www.globes.co.il/Finance/Shared/SearchResults.asp?Feeder=1&WhatType=3&TypeID=30&lang=en
+Additional Notes:
+The provided HTML primarily focuses on the English version of the Globes website.
+There might be additional sections and content within each category not listed here.
+Globes also has a Hebrew version of the website, accessible through the "עברית" link in the footer.
+
+
+Times of Israel Website URLs:
+Based on the provided HTML, here's a breakdown of the standardized URLs for different sections and content categories within the Times of Israel website:
+Base URL: https://www.timesofisrael.com/
+Main Navigation Sections:
+Israel & the Region: https://www.timesofisrael.com/israel-and-the-region/
+Jewish Times: https://www.timesofisrael.com/jewish-times/
+Israel Inside: https://www.timesofisrael.com/israel-inside/
+Tech Israel: https://www.timesofisrael.com/tech-israel/
+Real Estate Israel: https://www.timesofisrael.com/real-estate-israel/
+The Blogs: https://blogs.timesofisrael.com/
+Podcasts: https://www.timesofisrael.com/podcasts/
+Video: https://www.timesofisrael.com/video/
+Newsletters:
+The Daily Edition: https://www.timesofisrael.com/the-daily-edition/
+Tech Israel: https://www.timesofisrael.com/tech-israel-signup/
+Real Estate Israel: https://www.timesofisrael.com/real-estate-israel-signup/
+The Weekend Edition: https://www.timesofisrael.com/the-weekend-edition/
+Weekly Highlights: https://www.timesofisrael.com/the-blogs-edition/
+Partner Sites:
+Atlanta Jewish Times: https://www.atlantajewishtimes.com/
+The Jewish Standard (North New Jersey): https://jewishstandard.timesofisrael.com
+Jewish Chronicle (Pittsburgh): https://jewishchronicle.timesofisrael.com
+The Jewish News (United Kingdom): https://www.jewishnews.co.uk
+The Australian Jewish News: https://www.australianjewishnews.com/
+Special Coverage Sections:
+Liveblog: https://www.timesofisrael.com/topic/liveblog/
+Those We Have Lost: https://www.timesofisrael.com/collection/those-we-have-lost/
+Those We Are Missing: https://www.timesofisrael.com/collection/those-we-are-missing/
+Tales of the Times: https://www.timesofisrael.com/collection/tales-of-the-times/
+2023-2024 Israel-Hamas War: https://www.timesofisrael.com/topic/2023-2024-israel-hamas-war/
+What Matters Now: https://www.timesofisrael.com/topic/what-matters-now/
+TOI Original Videos: https://www.timesofisrael.com/topic/toi-original-videos/
+Please Note:
+This list is based on the provided HTML and may not be exhaustive. There could be additional sections and categories on the Times of Israel website.
+The website also features a newsfeed and various blogs, which can be accessed through the respective links.
+
+
+PharmaTimes Website URLs:
+Based on the provided HTML, here's a breakdown of the standardized URLs for different sections and content categories within the PharmaTimes website:
+Base URL: https://pharmatimes.com/
+Main Navigation Sections:
+Magazine: https://pharmatimes.com/magazine/
+PharmaTimes Magazine Archive: https://pharmatimes.com/pharmatimes-magazine-archive/
+Web Exclusives: https://pharmatimes.com/web_exclusives/
+News: https://pharmatimes.com/news/
+Competitions: https://pharmatimes.com/competitions/
+Appointments: https://pharmatimes.com/appointments/
+Business Insights: https://pharmatimes.com/business_insights/
+Webinars: https://pharmatimes.com/webinars/
+Thought Leadership: https://pharmatimes.com/thought_leadership/
+Jobs: https://pharmatimes.com/jobs/
+Additional Sections/Features:
+Subscribe: https://pharmatimes.com/subscribe/
+Advertise: https://pharmatimes.com/advertise/
+About Us: https://pharmatimes.com/about-us/
+#PharmaRole (Job Board): https://www.pharmarole.com/
+Please Note:
+This list is based on the provided HTML and may not be exhaustive. There could be further subsections within each category not listed here.
+The website structure appears to rely heavily on dynamic content and scripts, so extracting all URLs might require additional methods beyond parsing the static HTML.
+
+
+
+
+
+
+C:\Users\user\Desktop\personalWorkspace\TradeWise\news\.venv\Scripts\python.exe C:\Users\user\Desktop\personalWorkspace\TradeWise\news\is_section.py
+42
+To determine the appropriate category for the given input_url, let's analyze its structure:
+
+input_url = https://www.timesofisrael.com/israel-and-the-region/
+
+The base_url is "https://www.timesofisrael.com/" and the input_url starts with this base_url. The path of the input_url is "/israel-and-the-region/". This path represents a specific section on the website, which contains multiple articles related to Israel and the region.
+
+Based on this analysis:
+
+category_name = articles_page
+info_action_or_other_website=0
+article=0
+articles=1
+articles
+https://www.timesofisrael.com/israel-and-the-region/ : True
+To determine the appropriate category for the given input URL, we can analyze its structure and content.
+
+base_url = https://www.timesofisrael.com/
+input_url = https://www.timesofisrael.com/tech-israel-signup/
+
+The input URL is a specific page within the base website (https://www.timesofisrael.com/) and contains "tech" and "signup" in its pathname, which indicates that it's related to technology signups for Israel. This suggests that this URL directs to a specific article or content on the website.
+
+category_name = article_page
+info_action_or_other_website=0
+article=1
+articles=0
+article
+https://www.timesofisrael.com/tech-israel-signup/ : False
+To determine the most suited category for the input_url, we will analyze its structure.
+
+input_url = https://www.timesofisrael.com/liveblog_entry/iran-says-it-wouldnt-need-to-retaliate-if-un-had-condemned-strike-on-damascus/
+
+The input_url is a specific article from the Times of Israel website, as it contains "liveblog_entry" in its structure. This indicates that it directs to an individual article on the website.
+
+category_name = article_page
+info_action_or_other_website=0
+article=1
+articles=0
+article
+https://www.timesofisrael.com/liveblog_entry/iran-says-it-wouldnt-need-to-retaliate-if-un-had-condemned-strike-on-damascus/ : False
+To determine the most suited category for the given input URL, we can analyze its structure and compare it with the base URL.
+
+base_url = "https://www.timesofisrael.com/"
+input_url = "https://jewishchronicle.timesofisrael.com"
+
+1. Check if the input URL is a subdomain of the base URL:
+   - The input URL has "jewishchronicle" as its subdomain, which is also present in the base URL ("timesofisrael"). This indicates that it might be part of the same website.
+2. Analyze the structure and content of the input URL:
+   - The input URL contains a specific section name (in this case "jewishchronicle") followed by the base URL. This suggests that it could lead to either an article page or a separate section containing multiple articles.
+3. Compare with possible categories:
+   - If the input URL leads directly to an article, it would be categorized as "article_page." However, since we don't have specific information about the content of this link, we cannot definitively determine if it is a single article or a separate section containing multiple articles.
+4. Conclusion:
+   - In this case, without more context or information about the input URL, we can only assume that it directs to a specific section within the website (articles_
+info_action_or_other_website=0
+article=1
+articles=0
+article
+https://jewishchronicle.timesofisrael.com : False
+To determine the most suited category for the given input_url, we will analyze its structure and content.
+
+input_url = https://www.timesofisrael.com/podcasts/
+
+The base_url is "https://www.timesofisrael.com/" which represents the main news website. The input_url contains a specific section within this website, namely "Podcasts".
+
+Since it directs to a section containing multiple podcast episodes (which can be considered as articles in their own right), we will categorize it under:
+
+category_name=articles_page
+info_action_or_other_website=0
+article=0
+articles=1
+articles
+https://www.timesofisrael.com/podcasts/ : True
+To determine the most suited category for the given input_url, we will analyze its structure and content.
+
+input_url = https://www.timesofisrael.com/about/
+
+The base_url is a news website: https://www.timesofisrael.com/. The input_url is a subpage of this website with the path "/about/". This suggests that it contains information about the website itself rather than specific articles or sections containing multiple articles.
+
+category_name = info_action_or_other_website_page
+info_action_or_other_website=1
+article=0
+articles=0
+info_action_or_other_website
+https://www.timesofisrael.com/about/ : False
+To determine the most suited category for the given input_url, we will analyze its structure and content.
+
+input_url = https://www.timesofisrael.com/jewish-times/
+
+The base_url is: https://www.timesofisrael.com/
+
+Comparing the input_url with the base_url, it can be seen that they are almost identical except for the "/jewish-times/" part in the input_url which seems to represent a specific section or category of articles on the website. This suggests that the input_url directs to a particular section containing multiple articles related to "Jewish Times."
+
+Therefore, the final category is:
+articles_page=<here>
+info_action_or_other_website=0
+article=0
+articles=1
+articles
+https://www.timesofisrael.com/jewish-times/ : True
+To determine the appropriate category for the given input_url, we will analyze its structure and content.
+
+input_url = https://www.timesofisrael.com/israel-inside/
+
+The base_url is:
+https://www.timesofisrael.com/
+
+Comparing the two URLs, we can see that the input_url contains "israel-inside" after the base_url. This suggests it directs to a specific section within the website rather than an individual article or outside link. Therefore, this fits the category of articles_page.
+
+category_name=articles_page
+info_action_or_other_website=0
+article=0
+articles=2
+articles
+https://www.timesofisrael.com/israel-inside/ : True
+To determine the most suited category for the given input_url, we will analyze its structure and content.
+
+input_url = https://www.timesofisrael.com/tech-israel/
+
+1. Analyze the input_url: The input_url is a subsection of the base_url (https://www.timesofisrael.com/) followed by "/tech-israel/". This indicates that it belongs to a specific section within the news website.
+2. Compare with category definitions:
+   - info_action_or_other_website_page: directs to action / info / outside of the website.
+   - article_page: directs to a specific article.
+   - articles_page: directs to a section containing multiple articles.
+
+Since the input_url is part of a specific section within the news website (https://www.timesofisrael.com/tech-israel/) and does not lead directly to an individual article or another external website, it fits best with the "articles_page" category.
+
+category_name=articles_page
+info_action_or_other_website=1
+article=1
+articles=3
+articles
+https://www.timesofisrael.com/tech-israel/ : True
+To determine the appropriate category for the given input URL, we can analyze its structure and content.
+
+base_url = https://www.timesofisrael.com/
+input_url = https://www.timesofisrael.com/real-estate-israel/
+
+The base URL is a news website, and the input URL contains "real estate" in its path. This suggests that it might be an article or section related to real estate within the Times of Israel website.
+
+category_name = articles_page
+Reason: The input URL directs to a specific topic (real estate) within the Times of Israel website, which indicates that it is part of a section containing multiple articles related to this topic.
+info_action_or_other_website=0
+article=0
+articles=1
+articles
+https://www.timesofisrael.com/real-estate-israel/ : True
+To determine the most suited category for the given input URL, we will analyze its structure and compare it with the base URL.
+
+base_url = "https://www.timesofisrael.com/"
+input_url = "https://blogs.timesofisrael.com/"
+
+1. Compare the domain part of both URLs:
+   - The domain in the input URL is "blogs.timesofisrael.com", which includes the base URL's domain "timesofisrael.com". This suggests that the input URL belongs to the same website as the base URL but directs to a specific section (in this case, blogs).
+
+2. Compare the path part of both URLs:
+   - The paths are different, with the input URL having an additional "blogs" subdirectory. This further supports that it is a separate section within the same website.
+
+Based on these observations, we can conclude that the input_url directs to a specific section containing multiple articles (in this case, blogs). Therefore:
+
+category_name=articles_page
+info_action_or_other_website=0
+article=0
+articles=1
+articles
+https://blogs.timesofisrael.com/ : True
+To determine the most suited category for the given input_url, we will analyze its structure and content.
+
+input_url = https://www.timesofisrael.com/video/
+
+The base_url is "https://www.timesofisrael.com/" which represents the main news website. The input_url contains this base_url with an additional path "/video/". This suggests that it directs to a specific section within the website, in this case, the video section.
+
+Therefore, the final category is: article_page=<here> (This classification might not be accurate as "article_page" typically refers to individual articles, but since there are videos instead of articles on this page, it's more appropriate to classify it as a separate category.)
+info_action_or_other_website=0
+article=2
+articles=0
+article
+https://www.timesofisrael.com/video/ : False
+To determine the appropriate category for the given input URL, we can analyze its structure and content.
+
+base_url = https://www.timesofisrael.com/
+input_url = https://www.timesofisrael.com/the-daily-edition/
+
+The base URL is a news website, and the input URL directs to "The Daily Edition" page on this website. This page seems to be a collection of articles or headlines rather than a specific article itself. Therefore, it fits the category:
+
+category_name=articles_page
+info_action_or_other_website=0
+article=0
+articles=1
+articles
+https://www.timesofisrael.com/the-daily-edition/ : True
+To determine the appropriate category for the given input URL, let's analyze its structure:
+
+input_url = https://www.timesofisrael.com/real-estate-israel-signup/
+
+The base URL is "https://www.timesofisrael.com/" and the path in the input URL is "/real-estate-israel-signup/". The page seems to be a specific sign up or action page related to real estate in Israel within the Times of Israel website.
+
+category_name = info_action_or_other_website_page
+info_action_or_other_website=1
+article=0
+articles=0
+info_action_or_other_website
+https://www.timesofisrael.com/real-estate-israel-signup/ : False
+To determine the most suited category for the given input_url, we will analyze its structure and content.
+
+input_url = https://www.timesofisrael.com/the-weekend-edition/
+
+The base_url is:
+https://www.timesofisrael.com/
+
+Comparing the two URLs, we can see that the input_url contains "the-weekend-edition" after the base_url. This seems to be a specific section or edition of the website rather than an individual article or action page. Therefore, it is more likely to direct to a section containing multiple articles (articles_page).
+
+category_name=articles_page
+info_action_or_other_website=0
+article=0
+articles=2
+articles
+https://www.timesofisrael.com/the-weekend-edition/ : True
+To determine the most suited category for the given input_url, we will analyze its structure and content.
+
+input_url = https://www.timesofisrael.com/the-blogs-edition/
+
+1. Analyze the input_url: The input_url is a page within the Times of Israel website (base_url). It contains "The Blogs Edition" in its path, which suggests it's a section or collection of blog posts rather than an individual article.
+2. Compare with base_url structure: Since both the base_url and input_url belong to the same domain, we can assume that they share similar structures for different sections/pages on their website.
+3. Determine the category: Based on our analysis in step 1, this page seems to be a collection of blog posts rather than an individual article or action-oriented link. Therefore, it fits best into the "articles_page" category.
+
+Final answer: category_name=articles_page
+info_action_or_other_website=0
+article=0
+articles=2
+articles
+https://www.timesofisrael.com/the-blogs-edition/ : True
+To determine the most suited category for the given input_url, we will analyze its structure and compare it to the base_url.
+
+base_url = "https://www.timesofisrael.com/"
+input_url = "https://www.atlantajewishtimes.com/"
+
+Reason: The input_url is not part of the same website (base_url) but directs to another news website, which falls under the category of an external action/info page or a separate news website page.
+
+category_name = info_action_or_other_website_page
+info_action_or_other_website=1
+article=0
+articles=0
+info_action_or_other_website
+https://www.atlantajewishtimes.com/ : False
+To determine the most suited category for the given input_url, we will analyze its structure and compare it with the base_url.
+
+base_url = "https://www.timesofisrael.com/"
+input_url = "https://jewishstandard.timesofisrael.com"
+
+1. Check if the input_url starts with the base_url:
+   - The input_url starts with "https://", followed by "jewishstandard.timesofisrael.com". This matches the structure of the base_url, which is "https://www.timesofisrael.com/".
+
+2. Analyze if it directs to action / info / outside of the website:
+   - The input_url does not contain any specific article or page identifier in its URL path (e.g., "/news/" or "/article/"). This suggests that it might be a section within the Times of Israel website, but not necessarily an individual article or page.
+
+3. Analyze if it directs to a specific article:
+   - The input_url does not contain any identifier for a specific article (e.g., "/article/2021-09-01/" followed by the title). This suggests that it is not an individual article page.
+
+4. Analyze if it directs to a section containing multiple articles
+info_action_or_other_website=0
+article=0
+articles=0
+info_action_or_other_website
+https://jewishstandard.timesofisrael.com : False
+To determine the most suited category for the given input_url, we will analyze its structure and compare it with the base_url.
+
+base_url = https://www.timesofisrael.com/
+input_url = https://www.jewishnews.co.uk
+
+Reason: The input_url directs to a separate news website (Jewish News) which is outside of Times of Israel's domain. Therefore, it falls under the category "info_action_or_other_website_page".
+
+category_name = info_action_or_other_website_page
+info_action_or_other_website=2
+article=0
+articles=0
+info_action_or_other_website
+https://www.jewishnews.co.uk : False
+To determine the appropriate category for the given input URL, we will analyze its structure and compare it with the base URL.
+
+base_url = "https://www.timesofisrael.com/"
+input_url = "https://www.australianjewishnews.com/"
+
+1. Compare the domain names:
+   - The base URL's domain is "timesofisrael.com" and the input URL's domain is "australianjewishnews.com". These are different domains, indicating that this link directs outside of the website.
+2. Check if it matches any specific category:
+   - This does not match the structure for an article page or a section containing multiple articles.
+
+Based on these observations, we can conclude that the input URL is a separate news website and not directly related to the base URL. Therefore, the final category is:
+
+info_action_or_other_website_page=<here>
+info_action_or_other_website=1
+article=0
+articles=0
+info_action_or_other_website
+https://www.australianjewishnews.com/ : False
+To determine the most suited category for the given input_url, we will analyze its structure and content.
+
+input_url = https://www.timesofisrael.com/local/
+
+The base_url is "https://www.timesofisrael.com/" which represents the main news website. The input_url starts with this base_url followed by "/local/". This suggests that it directs to a specific section of the website, in this case, the local news section.
+
+Since the input_url leads to a section containing multiple articles related to a particular topic (in this case, "Local" news), we can categorize it as:
+
+category_name=articles_page
+info_action_or_other_website=0
+article=0
+articles=1
+articles
+https://www.timesofisrael.com/local/ : True
+To determine the most suited category for the input URL, let's analyze its structure.
+
+base_url = https://www.timesofisrael.com/
+input_url = https://crm.timesofisrael.com/sign-up?utm_source=website&utm_medium=menu&utm_campaign=community_announcement&utm_content=anonymous
+
+The input URL is not on the main domain (https://www.timesofisrael.com/) but rather on a different subdomain (crm). This suggests that it might be directing to an action or outside of the website page. Additionally, the URL contains parameters related to a sign-up form and a specific campaign announcement.
+
+Final category: info_action_or_other_website_page
+info_action_or_other_website=1
+article=0
+articles=0
+info_action_or_other_website
+https://crm.timesofisrael.com/sign-up?utm_source=website&utm_medium=menu&utm_campaign=community_announcement&utm_content=anonymous : False
+To determine the appropriate category, let's analyze the given input URL: https://crm.timesofisrael.com/sign-in
+
+The base URL is https://www.timesofisrael.com/. The input URL has a different domain (https://crm.timesofisrael.com/) which indicates that it directs to an external system or service related to the website but not part of its main content. In this case, it seems like a login page for a CRM (Customer Relationship Management) system.
+
+Therefore, the final category is: info_action_or_other_website_page
+info_action_or_other_website=1
+article=0
+articles=0
+info_action_or_other_website
+https://crm.timesofisrael.com/sign-in : False
