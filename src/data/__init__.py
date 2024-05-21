@@ -1,7 +1,8 @@
 from peewee import SqliteDatabase, Model
 
+from src.utils import storage_path
 
-db = SqliteDatabase('./storage/db.sqlite')
+db = SqliteDatabase(f'./{storage_path()}/db.sqlite')
 
 
 # Define the base model

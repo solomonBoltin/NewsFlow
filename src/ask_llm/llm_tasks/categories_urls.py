@@ -1,11 +1,13 @@
 import json
 import logging
+import os
 from datetime import datetime
 from os import path
 
 from openai import APIConnectionError
 
 from src.ask_llm.__init__ import ask_llm
+from src.utils import storage_path
 from src.utils.__init__ import url_to_filename
 
 logger = logging.getLogger(__name__)
@@ -65,8 +67,15 @@ history_for_identifying_sections = [
 ]
 
 
+def categories_path():
+    if not path.exists(f"./{storage_path()}/url_categories"):
+        os.mkdir(f"./{storage_path()}/url_categories")
+
+    return f"./{storage_path()}/url_categories"
+
+
 def save_categories_to_cache(base_url, output):
-    filename = f"./storage/is_section/{url_to_filename(base_url)}.json"
+    filename = f"{categories_path()}/{url_to_filename(base_url)}.json"
     try:
         if path.exists(filename):
             with open(filename, "r") as f:
@@ -85,7 +94,7 @@ def save_categories_to_cache(base_url, output):
 
 
 def categories_urls_using_ai_cache(base_url, input_urls):
-    filename = f"./storage/is_section/{url_to_filename(base_url)}.json"
+    filename = f"{categories_path()}/{url_to_filename(base_url)}.json"
 
     results = {}
     if path.exists(filename):
@@ -170,6 +179,5 @@ def test_categories_urls():
 
     for url, data in output.items():
         logger.info(f"{url}: {data} \n------\n")
-
 
 # test_categories_urls()
