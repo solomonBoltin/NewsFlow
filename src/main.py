@@ -31,15 +31,15 @@ async def main() -> None:
         websites = [
             # "https://www.bloomberg.com/", robot detection
             "https://pharmatimes.com/",
-            "https://edition.cnn.com/",
-            "https://www.business-standard.com/",
-            "https://www.itnonline.com/",
-            "https://www.nytimes.com/",
-            "https://www.smh.com.au/",
-            "https://www.globes.co.il/en/",
-            "https://www.calcalist.co.il/",
-            "https://www.theverge.com/",
-            "https://www.timesofisrael.com/",
+            # "https://edition.cnn.com/",
+            # "https://www.business-standard.com/",
+            # "https://www.itnonline.com/",
+            # "https://www.nytimes.com/",
+            # "https://www.smh.com.au/",
+            # "https://www.globes.co.il/en/",
+            # "https://www.calcalist.co.il/",
+            # "https://www.theverge.com/",
+            # "https://www.timesofisrael.com/",
             # "https://www.reuters.com/", robot detection
         ]
 
