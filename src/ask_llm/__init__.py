@@ -3,12 +3,17 @@ At the command line, only need to run once to install the package via pip:
 
 $ pip install google-generativeai
 """
+import os
 
 import google.generativeai as genai
+from dotenv import load_dotenv
 
 from src.ask_llm.local_llm import gpt4all_client
 
-genai.configure(api_key="AIzaSyD8TL-NY66HxpijdNHBU9m3NebPXkuIVGA")
+load_dotenv()
+# Load genai key from environment variable
+GENAI_KEY = os.getenv("GENAI_KEY")
+genai.configure(api_key=GENAI_KEY)
 
 # Set up the model
 generation_config = {

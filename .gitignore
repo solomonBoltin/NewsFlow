@@ -13,6 +13,7 @@ storage/key_value_stores/default/*
 
 .venv/
 .env/
+.env
 __pypackages__
 dist/
 build/
