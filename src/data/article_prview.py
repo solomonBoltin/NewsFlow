@@ -18,10 +18,6 @@ class ArticlePreview(BaseModel):
         table_name = 'article_preview'
 
 
-# Create the table if it doesn't exist
-db.create_tables([ArticlePreview])
-
-
 def test_article_preview():
     # Create a new article preview
 

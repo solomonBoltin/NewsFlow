@@ -2,14 +2,23 @@ from openai import OpenAI
 import datetime
 import json
 
+# model = "all-MiniLM-L6-v2-f16.gguf"
+# model = "replit-code-v1_5-3b-newbpe-q4_0.gguf"
+# model = "orca-mini-3b-gguf2-q4_0.gguf"
+# model = "gpt4all-falcon-newbpe-q4_0.gguf"
+# model = "Nous-Hermes-2-Mistral-7B-DPO.Q4_0.gguf"
+
+
 api_base = 'http://localhost:4891/v1'
 
-
-model = "all-MiniLM-L6-v2-f16.gguf"
-model = "replit-code-v1_5-3b-newbpe-q4_0.gguf"
-model = "orca-mini-3b-gguf2-q4_0.gguf"
-model = "gpt4all-falcon-newbpe-q4_0.gguf"
-model = "Nous-Hermes-2-Mistral-7B-DPO.Q4_0.gguf"
+gpt4all_generation_config = {
+    "max_tokens": 3048,
+    "temperature": 0,
+    "top_p": 1,
+    "n": 1,
+    "stream": False,
+    "model": "Nous-Hermes-2-Mistral-7B-DPO.Q4_0.gguf",
+}
 
 gpt4all_client = OpenAI(
     # This is the default and can be omitted
@@ -35,7 +44,7 @@ def llm_data_request(prompt):
         top_p=1,
         n=1,
         stream=False,
-        model=model,
+        model="Nous-Hermes-2-Mistral-7B-DPO.Q4_0.gguf",
     )
 
     return response
@@ -61,25 +70,24 @@ def test_get_article_preview_json():
 
     print(time)
 
-    html = """<div class="cardlist"><div class="image-card"><div class="image-title"><h4><a 
+    html = """<div class="cardlist"><div class="image-card"><div class="image-title"><h4><a
     class="smallcard-title" href="https://www.business-standard.com/economy/news/delhi-electricity-demand-to-cross-8gw
-    -this-summer-discoms-brace-up-124040800875_1.html">Delhi electricity demand to cross 8GW this summer, discoms brace 
-    up</a></h4></div><div class="shortvideoimg" style="position:relative"><a class="img-smllnews" 
+    -this-summer-discoms-brace-up-124040800875_1.html">Delhi electricity demand to cross 8GW this summer, discoms brace
+    up</a></h4></div><div class="shortvideoimg" style="position:relative"><a class="img-smllnews"
     href="https://www.business-standard.com/economy/news/delhi-electricity-demand-to-cross-8gw-this-summer-discoms-brace
-    -up-124040800875_1.html"></a></div></div><div class="MetaPost_metapost__dt07I metapoststyle"><div 
-    class="MetaPost_metainfo__MmNP0">3 min read <!-- --> Last Updated : <!-- -->Apr 08 2024 | 7:05 PM<!-- --> 
+    -up-124040800875_1.html"></a></div></div><div class="MetaPost_metapost__dt07I metapoststyle"><div
+    class="MetaPost_metainfo__MmNP0">3 min read <!-- --> Last Updated : <!-- -->Apr 08 2024 | 7:05 PM<!-- -->
     IST</div><div class="MetaPost_metaactions__myUB4"></div></div></div>"""
 
     res = get_article_preview_json(html)
 
     print(res)
     assert res["title"] == "Delhi electricity demand to cross 8GW this summer, discoms brace up"
-    assert res["link"] == "https://www.business-standard.com/economy/news/delhi-electricity-demand-to-cross-8gw-this-summer-discoms-brace-up-124040800875_1.html"
+    assert res[
+               "link"] == "https://www.business-standard.com/economy/news/delhi-electricity-demand-to-cross-8gw-this-summer-discoms-brace-up-124040800875_1.html"
     assert res["date"] == "Apr 08 2024 | 7:05 PM"
 
     print(f"Task took: {datetime.datetime.now() - time}")
-
-
 
 # while True:
 #     try:
