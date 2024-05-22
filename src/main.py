@@ -10,9 +10,10 @@ import asyncio
 from asyncio import sleep
 
 from src.data.article_prview import ArticlePreview
+from src.data.setup import setup_database
 # Apify SDK - toolkit for building Apify Actors, read more at https://docs.apify.com/sdk/python
 from src.news_actor import NewsActor
-from src.scrap.scrap_article_previews import ArticlePreviewScraper
+from src.scrap.article_preview_scraper import ArticlePreviewScraper
 from src.website_context import WebsiteContext
 
 
@@ -22,6 +23,8 @@ async def main() -> None:
     out of it, it will not work. Asynchronous execution is required for communication with Apify platform,
     and it also enhances performance in the field of web scraping significantly.
     """
+    # initialize program
+    setup_database()
 
     async with NewsActor:
         # Structure of input is defined in input_schema.json

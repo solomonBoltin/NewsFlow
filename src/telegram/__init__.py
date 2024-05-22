@@ -3,12 +3,7 @@ import os
 
 from aiogram import Bot
 from aiogram.exceptions import TelegramRetryAfter
-from dotenv import load_dotenv
-
-load_dotenv()
-
-token = os.getenv('TELEGRAM_BOT_TOKEN')
-article_preview_channel = os.getenv('TELEGRAM_ARTICLE_PREVIEW_CHANNEL')
+from src.config import TELEGRAM_BOT_TOKEN, TELEGRAM_ARTICLE_PREVIEW_CHANNEL
 
 
 def message_builder(article_preview):
@@ -16,10 +11,10 @@ def message_builder(article_preview):
 
 
 async def publish_article_preview(article_preview):
-    bot = Bot(token=token)
+    bot = Bot(token=TELEGRAM_BOT_TOKEN)
 
     try:
-        await bot.send_message(article_preview_channel, message_builder(article_preview))
+        await bot.send_message(TELEGRAM_ARTICLE_PREVIEW_CHANNEL, message_builder(article_preview))
 
     except TelegramRetryAfter as e:
         await asyncio.sleep(e.retry_after)

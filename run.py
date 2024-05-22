@@ -1,19 +1,9 @@
-"""
-This module serves as the entry point for executing the Apify Actor. It handles the configuration of logging
-settings. The `main()` coroutine is then executed using `asyncio.run()`.
-
-Feel free to modify this file to suit your specific needs.
-"""
-from dotenv import load_dotenv
-
 import asyncio
 import logging
 
 from apify.log import ActorLogFormatter
 
 from src.main import main
-
-load_dotenv()
 
 logging.basicConfig(filename='actor.log', level=logging.DEBUG)
 

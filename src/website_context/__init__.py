@@ -4,7 +4,7 @@ import os
 from time import sleep
 
 from src.ask_llm.llm_tasks.top_15_sections import ask_ai_on_top_15_sections
-from src.scrap.__init__ import get_html, clean_html
+from src.scrap.__init__ import get_html
 from src.utils.__init__ import url_to_filename, storage_path
 from src.website_context.find_article_preview_elements import find_article_preview_elements
 from src.website_context.find_sections import find_sections
