@@ -33,9 +33,10 @@ async def main() -> None:
         NewsActor.log.info("Starting actor")
         websites = [
             # "https://www.bloomberg.com/", robot detection
+            "https://medicalxpress.com/",
             "https://pharmatimes.com/",
-            # "https://edition.cnn.com/",
-            # "https://www.business-standard.com/",
+            "https://edition.cnn.com/",
+            "https://www.business-standard.com/",
             # "https://www.itnonline.com/",
             # "https://www.nytimes.com/",
             # "https://www.smh.com.au/",
@@ -50,8 +51,9 @@ async def main() -> None:
             tasks = []
             for website in websites:
                 website_context = WebsiteContext(website)
-                website_context.get_or_generate_website_context()
+                await website_context.get_or_generate_website_context()
 
+            for website in websites:
                 article_preview_scraper = ArticlePreviewScraper(website)
 
                 task = article_preview_scraper.scarp_website_async()

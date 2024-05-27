@@ -4,6 +4,7 @@ import os
 from time import sleep
 
 from src.ask_llm.llm_tasks.top_15_sections import ask_ai_on_top_15_sections
+from src.scrap import get_html_async
 from src.scrap.__init__ import get_html
 from src.utils.__init__ import url_to_filename, storage_path
 from src.website_context.find_article_preview_elements import find_article_preview_elements
@@ -20,11 +21,11 @@ class WebsiteContext:
         self.logger = logging.getLogger('actor')
         self.logger = self.logger.getChild(f"website_context({base_url})")
 
-    def generate_website_context(self):
+    async def generate_website_context(self):
         self.logger.info("Generating website context")
         website_context = {"base": self.base_url}
 
-        main_html = get_html(self.base_url, self.caching, clean=True)
+        main_html = await get_html_async(self.base_url, self.caching, clean=True)
 
         sections = find_sections(self.base_url, main_html)
         website_context["sections"] = sections
@@ -40,7 +41,7 @@ class WebsiteContext:
         logging.info("Finding article elements")
         website_context["article_elements"] = {}
         for section in top_sections:
-            article_elements = find_article_preview_elements(section, caching=self.caching, ai_caching=self.ai_caching)
+            article_elements = await find_article_preview_elements(section, caching=self.caching, ai_caching=self.ai_caching)
             for article_element in article_elements.values():
                 website_context["article_elements"][article_element["element_tree"]] = article_element
                 self.logger.debug(f"Found article element: {article_element}")
@@ -62,8 +63,8 @@ class WebsiteContext:
         with open(self.file_path, "w") as f:
             json.dump(website_context, f)
 
-    def get_or_generate_website_context(self):
-        return self.context or self.generate_website_context()
+    async def get_or_generate_website_context(self):
+        return self.context or await self.generate_website_context()
 
     @property
     def file_path(self):

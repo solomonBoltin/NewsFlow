@@ -1,6 +1,7 @@
 import logging
 
 from src.ask_llm.llm_tasks.article_preview_element_processor import process_article_preview_element
+from src.scrap import get_html_async
 from src.scrap.__init__ import get_html, clean_html
 from src.scrap.tree_selectors import *
 from src.utils.__init__ import extract_base_url
@@ -71,14 +72,13 @@ def extract_groups(html_content):
     return sorted_results
 
 
-def find_article_preview_elements(section_url, caching=True, ai_caching=True):
+async def find_article_preview_elements(section_url, caching=True, ai_caching=True):
     # returns jsons representing articles with selectors to element, title, link, date
     logger.info(f"Getting article preview elements from {section_url}")
 
     base_url = extract_base_url(section_url)
 
-    html_content = get_html(section_url, cache=caching)
-    html_content = clean_html(html_content)
+    html_content = await get_html_async(section_url, cache=caching, clean=True)
 
     grouped_elements = extract_groups(html_content)
     logger.info(f"Found {len(grouped_elements)} groups of elements that are potential article previews.")

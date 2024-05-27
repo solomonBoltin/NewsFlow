@@ -3,7 +3,7 @@ from typing import Dict
 
 from src.data.article_prview import ArticlePreview
 from src.news_actor import NewsActor
-from src.scrap import get_html, clean_html
+from src.scrap import get_html, clean_html, get_html_async
 from src.scrap.tree_selectors import find_by_multiple_trees, find_by_parents
 from src.utils import extract_base_url
 from src.website_context import WebsiteContext
@@ -19,6 +19,12 @@ class ArticlePreviewScraper:
         self.logger = logging.getLogger('actor')
         self.logger = self.logger.getChild(f"article_previews_scraper({base_url})")
 
+    def full_url(self, url):
+        # use url library
+        import urllib.parse
+        return urllib.parse.urljoin(self.base_url, url)
+        # return self.base_url + url if url.startswith("/") else url
+
     async def scarp_website_async(self, caching=False):
         if not self.website_context.context:
             logging.warning("Website context not found, ignoring task.")
@@ -27,7 +33,7 @@ class ArticlePreviewScraper:
         scraped_article_previews = {}
         for section in self.website_context.top_sections:
             self.logger.info("Scrapping section: " + section)
-            article_previews = self.scrap_section(section)
+            article_previews = await self.scrap_section(section)
 
             for link, article in article_previews.items():
                 scraped_article_previews[link] = article
@@ -36,8 +42,8 @@ class ArticlePreviewScraper:
         logging.info(f"Scrapped {len(scraped_article_previews)} articles in total")
         return scraped_article_previews
 
-    def scrap_section(self, section, caching=False):
-        section_html = get_html(section, caching, clean=True)
+    async def scrap_section(self, section, caching=False):
+        section_html = await get_html_async(section, caching, clean=True)
 
         try:
             article_previews = self.scrap_article_previews(section_html)
@@ -75,6 +81,7 @@ class ArticlePreviewScraper:
 
                 title_text = title_element.text if title_element else None
                 link_text = link_element.get("href") if link_element else None
+                link_text = self.full_url(link_text) if link_text else None
                 date_text = date_element.text if date_element else None
 
                 if title_text and link_text:

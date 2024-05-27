@@ -1,3 +1,7 @@
+import time
+
+from google.api_core.exceptions import ResourceExhausted
+
 from src.ask_llm.models.gemini import gemini_model, generation_config
 from src.ask_llm.models.gpt4all import gpt4all_client, gpt4all_generation_config
 
@@ -24,6 +28,14 @@ def ask_llm(history, question, model_name="gemini"):
     history = get_history_flavor(history, question, flavor=model_name)
 
     if model_name == "gemini":
+        try:
+            convo = gemini_model.start_chat(history=history)
+            convo.send_message(question)
+            return convo.last.text
+        except ResourceExhausted as e:
+            time.sleep(3)
+            print("ResourceExhausted error, retrying...")
+            ask_llm(history, question, model_name=model_name)
         convo = gemini_model.start_chat(history=history)
         convo.send_message(question)
         return convo.last.text
