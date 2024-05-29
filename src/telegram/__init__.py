@@ -1,9 +1,12 @@
 import asyncio
+import logging
 import os
 
 from aiogram import Bot
 from aiogram.exceptions import TelegramRetryAfter
 from src.config import TELEGRAM_BOT_TOKEN, TELEGRAM_ARTICLE_PREVIEW_CHANNEL
+
+logger = logging.getLogger('actor').getChild("telegram")
 
 
 def message_builder(article_preview):
@@ -17,5 +20,6 @@ async def publish_article_preview(article_preview):
         await bot.send_message(TELEGRAM_ARTICLE_PREVIEW_CHANNEL, message_builder(article_preview))
 
     except TelegramRetryAfter as e:
+        logger.warning(f"Telegram API rate limit exceeded, retrying in {e.retry_after} seconds")
         await asyncio.sleep(e.retry_after)
         await publish_article_preview(article_preview)
