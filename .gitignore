@@ -35,3 +35,4 @@ dmypy.json
 storage
 node_modules
 .venv
+credentials.json

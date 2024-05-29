@@ -1,0 +1,7 @@
+
+
+
+docker run -p 5000:5000 -v C:/Users/user/Desktop/personalWorkspace/TradeWise/newsflow/storage:/app/storage newsflow0
+
+docker build . -t newsflow0
+

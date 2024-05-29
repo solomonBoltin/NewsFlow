@@ -1,3 +1,5 @@
+import logging
+
 import google.generativeai as genai
 from src.config import GENAI_KEY
 

@@ -9,7 +9,8 @@ class NewsActor(Actor):
 
     @classmethod
     async def on_new_article_preview(cls, article_preview):
-        cls.log.info(f"New article preview: {article_preview.title.replace('\n', '')}")
+        title = article_preview.title.replace("\n", '')
+        cls.log.info(f"New article preview: {title}")
         await telegram.publish_article_preview(article_preview)
 
     @classmethod
