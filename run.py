@@ -22,3 +22,16 @@ apify_logger.addHandler(handler)
 
 # Execute the Actor main coroutine
 asyncio.run(main())
+
+
+#
+# newsflow / run.py
+# newsprocessor / run.py
+# trader / run.py - future
+# compose:
+#   kafka
+#   zookeeper
+#   newsflow
+#   newsprocessor
+
+
