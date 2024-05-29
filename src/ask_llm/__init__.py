@@ -28,6 +28,7 @@ def get_history_flavor(history, question, flavor="gpt4all"):
 
 
 def ask_llm(history, question, model_name="gemini"):
+    logger.info("asking llm")
     history = get_history_flavor(history, question, flavor=model_name)
 
     if model_name == "gemini":

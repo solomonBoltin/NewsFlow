@@ -32,34 +32,36 @@ async def main() -> None:
         # websites = actor_input.get('websites')
         NewsActor.log.info("Starting actor")
         websites = [
-            # "https://www.bloomberg.com/", robot detection
-            "https://apnews.com",
-            "https://etn.news/",
             "https://undecidedmf.com/",
-            "https://www.haaretz.com/",
-            "https://medicalxpress.com/",
-            "https://pharmatimes.com/",
-            "https://edition.cnn.com/",
-            "https://www.business-standard.com/",
-            "https://www.itnonline.com/",
-            "https://www.nytimes.com/",
-            "https://www.smh.com.au/",
+            "https://apnews.com",
+            # "https://etn.news/",
+            # "https://www.haaretz.com/",
+            # "https://medicalxpress.com/",
+            # "https://pharmatimes.com/",
+            # "https://edition.cnn.com/",
+            # "https://www.business-standard.com/",
+            # "https://www.itnonline.com/",
+            # "https://www.nytimes.com/",
+            # "https://www.smh.com.au/",
             # "https://www.globes.co.il/en/",
             # "https://www.calcalist.co.il/",
             # "https://www.theverge.com/",
             # "https://www.timesofisrael.com/",
             # "https://www.reuters.com/", robot detection
+            # "https://www.bloomberg.com/", robot detection
         ]
 
         while True:
             tasks = []
             for website in websites:
                 website_context = WebsiteContext(website)
-                try:
-                    await website_context.get_or_generate_website_context()
-                except Exception as e:
-                    NewsActor.log.error(f"Error: {e}")
-                    websites.remove(website)
+                await website_context.get_or_generate_website_context()
+
+                # try:
+                #     await website_context.get_or_generate_website_context()
+                # except Exception as e:
+                #     NewsActor.log.error(f"Error: {e}")
+                #     websites.remove(website)
 
             for website in websites:
                 article_preview_scraper = ArticlePreviewScraper(website)
@@ -67,8 +69,6 @@ async def main() -> None:
                 task = article_preview_scraper.scarp_website_async()
                 tasks.append(task)
                 await asyncio.sleep(1)
-
-
 
             await asyncio.gather(*tasks)
             NewsActor.log.info("Sleeping")
