@@ -1,5 +1,5 @@
 # Base image with Python
-FROM python:3.12-bookworm
+FROM python:3.9-bookworm
 
 # Working directory inside the container
 WORKDIR /app

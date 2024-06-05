@@ -26,3 +26,4 @@ google-generativeai~=0.5.4
 python-dotenv~=1.0.1
 playwright~=1.44.0
 playwright_stealth~=1.0.6
+faust~=1.10.0
