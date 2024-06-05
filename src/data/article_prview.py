@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 from peewee import *
 
 from src.data import db, BaseModel
