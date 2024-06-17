@@ -7,7 +7,8 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.options import Options
 
-from src.utils import storage_path
+from src.scrap.scrapper import Scrapper
+from src.utils import storage_path, url_to_file_name
 
 logger = logging.getLogger('actor').getChild("scrap_tools")
 
@@ -72,15 +73,6 @@ def clean_html(html_content, remove_attributes=False):
     return soup.contents.__str__()
 
 
-def url_to_file_name(url):
-    return url.replace("https://", "").replace("http://", "").replace("/", "").replace(".", "").replace("?",
-                                                                                                        "").replace("=",
-                                                                                                                    "").replace(
-        "&", "").replace(":", "").replace("-", "").replace("_", "").replace("!", "").replace(";", "").replace(",",
-                                                                                                              "").replace(
-        " ", "").replace("%", "").replace("#", "").replace("@", "")
-
-
 def get_html(url, cache=False, clean=False):
     logger.info(f"Getting html from {url}, cache: {cache}, clean: {clean}")
     if cache:
@@ -125,34 +117,9 @@ async def get_html_async(url, cache=False, clean=False, screenshots=True):
             pass
 
     try:
-        # Use playwright to download the source text
-        async with async_playwright() as p:
-
-            browser = await p.webkit.launch(headless=True)
-            # add browser on response event handler to scroll down
-
-            page = await browser.new_page()
-            await stealth_async(page)
-
-            page.set_default_timeout(60000)
-            await page.goto(url, wait_until="networkidle")
-
-            # scroll down
-            await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-
-            # wait for the page to load fully
-            await page.wait_for_load_state("load")
-
-            if screenshots:
-                screenshot_path = f"{screenshots_path(url)}/{url_to_file_name(url)}.png"
-                await page.screenshot(path=screenshot_path, full_page=True)
-
-            html_content = await page.content()
-            await browser.close()
-            save_html(html_content, f"{url_to_file_name(url)}.html")
-            if clean:
-                html_content = clean_html(html_content)
-            return html_content
+        sc = Scrapper(max_pages=2)
+        html = await sc.get_html(url)
+        return html
     except Exception as e:
         logger.error(f"Failed to get html from {url}: {e}")
         return ""

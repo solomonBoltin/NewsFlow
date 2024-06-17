@@ -4,6 +4,15 @@ import base64
 import os
 
 
+def url_to_file_name(url):
+    return url.replace("https://", "").replace("http://", "").replace("/", "").replace(".", "").replace("?",
+                                                                                                        "").replace("=",
+                                                                                                                    "").replace(
+        "&", "").replace(":", "").replace("-", "").replace("_", "").replace("!", "").replace(";", "").replace(",",
+                                                                                                              "").replace(
+        " ", "").replace("%", "").replace("#", "").replace("@", "")
+
+
 def url_path_to_filename(url: str):
     return base64.urlsafe_b64encode(url.encode()).decode()
 
