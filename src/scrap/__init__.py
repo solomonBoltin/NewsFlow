@@ -134,8 +134,8 @@ async def get_html_async(url, cache=False, clean=False, screenshots=True):
             page = await browser.new_page()
             await stealth_async(page)
 
-            page.set_default_timeout(20000)
-            await page.goto(url, wait_until="domcontentloaded")
+            page.set_default_timeout(60000)
+            await page.goto(url, wait_until="networkidle")
 
             # scroll down
             await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")

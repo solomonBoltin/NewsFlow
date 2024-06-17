@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from typing import Dict
 
@@ -25,7 +26,8 @@ class ArticlePreviewScraper:
         return urllib.parse.urljoin(self.base_url, url)
         # return self.base_url + url if url.startswith("/") else url
 
-    async def scarp_website_async(self, caching=False):
+    async def scarp_website_async(self, caching=False, delay=0):
+        await asyncio.sleep(delay)
         if not self.website_context.context:
             logging.warning("Website context not found, ignoring task.")
             return
