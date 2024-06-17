@@ -1,7 +1,6 @@
 import asyncio
 import faust
 
-from src.data.article_prview import ArticlePreview
 from src.kafka.faust_article_preview import FaustArticlePreview
 
 # Define a Faust app

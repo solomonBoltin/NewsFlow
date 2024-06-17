@@ -63,12 +63,13 @@ async def main() -> None:
                 #     NewsActor.log.error(f"Error: {e}")
                 #     websites.remove(website)
 
+            delay = 0
             for website in websites:
                 article_preview_scraper = ArticlePreviewScraper(website)
 
-                task = article_preview_scraper.scarp_website_async()
+                task = article_preview_scraper.scarp_website_async(delay=delay)
+                delay += 15
                 tasks.append(task)
-                await asyncio.sleep(1)
 
             await asyncio.gather(*tasks)
             NewsActor.log.info("Sleeping")
