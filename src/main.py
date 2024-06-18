@@ -32,6 +32,7 @@ async def main() -> None:
         # websites = actor_input.get('websites')
         NewsActor.log.info("Starting actor")
         websites = [
+            "https://www.newswire.com/newsroom",
             "https://www.eurasiantimes.com/",
             "https://undecidedmf.com/",
             "https://apnews.com",
