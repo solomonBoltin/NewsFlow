@@ -32,6 +32,14 @@ async def main() -> None:
         # websites = actor_input.get('websites')
         NewsActor.log.info("Starting actor")
         websites = [
+            # "https://www.marketwatch.com/", bot detection
+            # "https://fortune.com/", context generation troble (mismatched tags)
+            # "https://streetinsider.com/", # premium (some headlines avilable)  - article loader not working
+            "https://www.stocktitan.net/",
+            "https://www.manufacturingtodayindia.com/",
+            "https://dw.com/",
+            "https://hackread.com/",
+            "https://cnbc.com/",
             "https://www.newswire.com/newsroom",
             "https://www.eurasiantimes.com/",
             "https://undecidedmf.com/",
