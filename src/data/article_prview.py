@@ -12,6 +12,7 @@ class ArticlePreview(BaseModel):
     date: str = DateField(null=True)
     website_url: str = CharField()
     by_tag_tree: str = CharField(null=True)
+    scrape_datetime: str = CharField(null=True)
 
     def __str__(self):
         return f'{self.title} - {self.link} - {self.date} - {self.website_url}'

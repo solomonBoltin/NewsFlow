@@ -1,4 +1,5 @@
 import asyncio
+import datetime
 import logging
 from typing import Dict
 
@@ -93,7 +94,8 @@ class ArticlePreviewScraper:
                         link=link_text,
                         date=date_text,
                         website_url=website_url,
-                        by_tag_tree=element_tree
+                        by_tag_tree=element_tree,
+                        scrape_datetime=datetime.datetime.now().isoformat()
                     )
                     article_previews[link_text] = article_preview
 
