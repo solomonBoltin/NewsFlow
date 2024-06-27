@@ -5,12 +5,16 @@ import os
 from aiogram import Bot
 from aiogram.exceptions import TelegramRetryAfter
 from src.config import TELEGRAM_BOT_TOKEN, TELEGRAM_ARTICLE_PREVIEW_CHANNEL
+from src.data.article_prview import ArticlePreview
 
 logger = logging.getLogger('actor').getChild("telegram")
 
 
-def message_builder(article_preview):
-    return f"{article_preview.title}\n{article_preview.link}\n{article_preview.date}\n{article_preview.website_url}"
+def message_builder(article_preview: ArticlePreview):
+    return (f"{article_preview.title}\n{article_preview.link}"
+            f"\n{article_preview.date}"
+            f"\n{article_preview.scrape_datetime}"
+            f"\n{article_preview.website_url}")
 
 
 async def publish_article_preview(article_preview):
