@@ -5,13 +5,12 @@ from time import sleep
 
 from src.ask_llm.llm_tasks.top_15_sections import ask_ai_on_top_15_sections
 from src.scrap import get_html_async
-from src.scrap.__init__ import get_html
 from src.utils.__init__ import url_to_filename, storage_path
 from src.website_context.find_article_preview_elements import find_article_preview_elements
 from src.website_context.find_sections import find_sections
 
 
-class WebsiteContext:
+class NewsWebsiteContext:
 
     def __init__(self, base_url, caching=False, ai_caching=True):
         self.base_url = base_url
@@ -95,9 +94,9 @@ def website_context_path():
 
 
 def main():
-    website_context = WebsiteContext("https://www.calcalist.co.il/")
+    website_context = NewsWebsiteContext("https://www.calcalist.co.il/")
     websites = ["https://www.calcalist.co.il/"]
-    websites = [WebsiteContext(website) for website in websites]
+    websites = [NewsWebsiteContext(website) for website in websites]
     while True:
         for websites in websites:
             websites.get_or_generate_website_context()

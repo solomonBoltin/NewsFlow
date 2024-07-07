@@ -213,4 +213,4 @@ def test_process_article_preview_element():
     res = process_article_preview_element("http://www.theverge.com", element1)
     logger.info(res)
 
-# test_process_article_preview_element()
+test_process_article_preview_element()

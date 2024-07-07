@@ -5,10 +5,10 @@ from typing import Dict
 
 from src.data.article_prview import ArticlePreview
 from src.news_actor import NewsActor
-from src.scrap import get_html, clean_html, get_html_async
+from src.scrap import get_html_async
 from src.scrap.tree_selectors import find_by_multiple_trees, find_by_parents
 from src.utils import extract_base_url
-from src.website_context import WebsiteContext
+from src.website_context import NewsWebsiteContext
 
 
 class ArticlePreviewScraper:
@@ -16,7 +16,7 @@ class ArticlePreviewScraper:
     def __init__(self, base_url, caching=False):
         self.base_url = base_url
         self.caching = caching
-        self.website_context: WebsiteContext = WebsiteContext(base_url, caching)
+        self.website_context: NewsWebsiteContext = NewsWebsiteContext(base_url, caching)
 
         self.logger = logging.getLogger('actor')
         self.logger = self.logger.getChild(f"article_previews_scraper({base_url})")

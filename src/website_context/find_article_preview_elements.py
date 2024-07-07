@@ -1,8 +1,6 @@
 import logging
 
 from src.ask_llm.llm_tasks.article_preview_element_processor import process_article_preview_element
-from src.scrap import get_html_async
-from src.scrap.__init__ import get_html, clean_html
 from src.scrap.tree_selectors import *
 from src.utils.__init__ import extract_base_url
 

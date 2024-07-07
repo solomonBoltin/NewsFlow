@@ -37,6 +37,7 @@ def url_to_filename(url):
 
 def extract_base_url(url):
     # from beginning to first slash that is not part of http:// or https://
+    url = url.strip()
     return url[:url.find("/", 8)]
     # return urlsplit(url).netloc
 
@@ -46,3 +47,14 @@ def storage_path():
         os.mkdir("storage")
 
     return f"storage"
+
+
+def test_extract_base_url():
+    url = "https://sananes.co.il/collections/%D7%A4%D7%A8%D7%A7%D7%98-%D7%A4%D7%A8%D7%A7%D7%98-spc"
+
+    base = extract_base_url(url)
+    print(base)
+
+
+if __name__ == '__main__':
+    test_extract_base_url()

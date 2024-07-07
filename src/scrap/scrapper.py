@@ -11,12 +11,13 @@ from src.utils import url_to_file_name, storage_path
 
 logger = logging.getLogger('actor').getChild("scrapper")
 
+"""
+This class is a singleton responsible for limiting the number of pages that can be created at the same time.
+And reusing them when they are available.
+it exposes a method to get a html from a url, and a method to close the browser and playwright instance.
+"""
 
-# """
-# This class is responsible for limiting the number of pages that can be created at the same time.
-# And reusing them when they are available.
-# it exposes a method to get a html from a url, and a method to close the browser and playwright.
-# """
+
 class Scrapper:
     _max_pages = 5
     _pl = None
@@ -71,57 +72,69 @@ class Scrapper:
         await self._browser.close()
         await self._pl.stop()
 
-    async def get_html(self, url, clean=True, screenshots=True):
-
-        page = await self.get_available_page()
-
-        try:
-
-            # goto page
+    async def get_html(self, url, clean=True, screenshots=True, cache=False, custom_load: callable = None):
+        html_text = None
+        if cache:
             try:
-                await page.goto(url, wait_until="networkidle", timeout=20000)
-            except TimeoutError:
-                logger.warning(f"Page loading not completed after {20000}ms for {url}, continuing...")
+                html_text = load_html(url)
+            except FileNotFoundError:
+                pass
 
-            # scroll down
-            await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+        if not html_text:
+            page = await self.get_available_page()
 
-            # wait for the page to load fully
             try:
-                await page.wait_for_load_state("domcontentloaded", timeout=30000)
-            except TimeoutError as e:
-                logger.warning(f"Page loading not completed after {30000}ms for {url}, continuing...")
 
-            # take screenshot
-            if screenshots:
+                # goto page
                 try:
-                    screenshot_path = f"{screenshots_path(url)}/{url_to_file_name(url)}.png"
-                    await page.screenshot(path=screenshot_path, full_page=True)
-                except Exception as e:
-                    logger.warning(f"Failed to take screenshot for {url}: {e}")
+                    await page.goto(url, wait_until="networkidle", timeout=20000)
+                except TimeoutError:
+                    logger.warning(f"Page loading not completed after {20000}ms for {url}, continuing...")
 
-            # get html content
-            html_content = await page.content()
+                # scroll down
+                if custom_load:
+                    await custom_load(page)
+                else:
+                    await page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
 
-            # release page
-            await self.release_page(page)
+                # wait for the page to load fully
+                try:
+                    await page.wait_for_load_state("domcontentloaded", timeout=30000)
+                except TimeoutError as e:
+                    logger.warning(f"Page loading not completed after {30000}ms for {url}, continuing...")
 
-            save_html(html_content, f"{url_to_file_name(url)}.html")
-            if clean:
-                html_content = clean_html(html_content)
-            return html_content
+                # take screenshot
+                if screenshots:
+                    try:
+                        screenshot_path = f"{screenshots_path(url)}/{url_to_file_name(url)}.png"
+                        await page.screenshot(path=screenshot_path, full_page=True)
+                    except Exception as e:
+                        logger.warning(f"Failed to take screenshot for {url}: {e}")
 
-        except Exception as e:
-            logger.error(f"Failed while getting html from {url}: {e}")
-            await self.release_page(page)
-            return ""
+                # get html content
+                html_text = await page.content()
+
+                # release page
+                await self.release_page(page)
+
+                save_html(html_text, url)
+            except Exception as e:
+                logger.error(f"Failed while getting html from {url}: {e}")
+                await self.release_page(page)
+                return ""
+
+            if html_text and clean:
+                html_text = clean_html(html_text)
+
+        return html_text
 
 
-def clean_html(html_content, remove_attributes=False):
+def clean_html(html_content, remove_tags=True, remove_attributes=False):
     """
   Removes scripts, styles, and form elements from HTML content.
 
   Args:
+    remove_tags:
     html_content (str): The HTML content as a string.
 
   Returns:
@@ -131,12 +144,15 @@ def clean_html(html_content, remove_attributes=False):
   """
     soup = BeautifulSoup(html_content, "html.parser")
 
-    tags_to_remove = ["style", "class", "input", "picture", "source", "noscript", "img", "iframe", "svg", "path",
-                      "link", "meta", "script"]
+    tags_to_remove = ["style", "input", "picture", "source", "noscript", "iframe", "svg", "path", "link", "meta",
+                      "script"]
+    attributes_to_remove = ["style", "input", "picture", "source", "noscript", "img", "iframe", "svg", "path", "link",
+                            "meta", "script"]
 
     # Remove script tags
-    for script in soup(tags_to_remove):
-        script.decompose()
+    if remove_tags:
+        for tag in soup(tags_to_remove):
+            tag.decompose()
 
     if remove_attributes:
         for tag in soup.find_all():
@@ -150,31 +166,7 @@ def clean_html(html_content, remove_attributes=False):
             if not child.name:  # Check if it's a NavigableString
                 child.extract()  # Remove the element
 
-    # removeNewLines
-
-    articles = []
-    # for article_element in soup.find_all("article"):
-    #
-    #     print(article_element)
-    #     title_element = article_element.find("h2").find("a")
-    #     title = title_element.text.strip()
-    #     link = title_element["href"]
-    #
-    #     date_element = article_element.find("p").find("span")
-    #     date = date_element.text.strip() if date_element else None
-    #
-    #     summary_element = article_element.find("div", class_="post-content")
-    #     summary = summary_element.text.strip() if summary_element else None
-    #
-    #     articles.append({
-    #         "title": title,
-    #         "link": link,
-    #         "date": date,
-    #         "summary": summary,
-    #     })
-
-    # print("Articles length: ", len(articles))
-    return soup.contents.__str__()
+    return str(soup)
 
 
 def htmls_path():
@@ -183,9 +175,16 @@ def htmls_path():
     return f"./{storage_path()}/htmls"
 
 
-def save_html(html, filename):
+def save_html(html, url):
+    filename = f"{url_to_file_name(url)}.html"
     with open(f"{htmls_path()}/{filename}", "w", encoding="utf-8") as file:
         file.write(html)
+
+
+def load_html(url):
+    filename = f"{url_to_file_name(url)}.html"
+    with open(f"{htmls_path()}/{filename}", "r", encoding="utf-8") as file:
+        return file.read()
 
 
 def screenshots_path(url):
