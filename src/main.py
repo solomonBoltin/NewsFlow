@@ -14,7 +14,7 @@ from src.data.setup import setup_database
 # Apify SDK - toolkit for building Apify Actors, read more at https://docs.apify.com/sdk/python
 from src.news_actor import NewsActor
 from src.scrap.article_preview_scraper import ArticlePreviewScraper
-from src.website_context import WebsiteContext
+from src.website_context import NewsWebsiteContext
 
 
 async def main() -> None:
@@ -64,7 +64,7 @@ async def main() -> None:
         while True:
             tasks = []
             for website in websites:
-                website_context = WebsiteContext(website)
+                website_context = NewsWebsiteContext(website)
                 await website_context.get_or_generate_website_context()
 
                 # try:

@@ -1,6 +1,10 @@
+# This Python file uses the following encoding: utf-8
+import asyncio
 from typing import List, Dict
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
+
+from src.scrap import get_html_async
 
 
 def extract_articles(html_text, article_css_selector):
@@ -105,6 +109,7 @@ def find_by_parents(html_text, parents, or_by_css=None):
 def find_by_multiple_trees(html_text, trees) -> Dict[str, List[BeautifulSoup]]:
     found_by_tree = {}
     soup = BeautifulSoup(html_text, 'html.parser')
+
     for element in soup.find_all():
         tag_tree = extract_tag_tree(element.__str__())
         if tag_tree in trees:
@@ -137,6 +142,7 @@ def get_articles_tree_and_verify(html, selector):
     found_by_trees = find_by_trees(html, articles_trees)
     return articles_trees, len(articles), (len(articles) == len(found_by_trees) & len(articles))
 
+
 #
 # # Example usage:
 # full_html = open('./pharmatimes_com.html', 'r').read()
@@ -160,3 +166,118 @@ def get_articles_tree_and_verify(html, selector):
 # print(len(articles))
 # print(len(found_by_trees))
 # print(articles_trees)
+
+
+def test_tag_tree():
+    html_text = """<li class="grid__item">
+
+<link href="//sananes.co.il/cdn/shop/t/38/assets/component-rating.css?v=173409050425969898561718031269" rel="stylesheet" type="text/css" media="all">
+
+<div class="card-wrapper">
+  <a href="/collections/%D7%A4%D7%A8%D7%A7%D7%98-%D7%A4%D7%A8%D7%A7%D7%98-%D7%A2%D7%A5/products/%D7%A4%D7%A8%D7%A7%D7%98-spc-%D7%93%D7%92%D7%9D-ca169" class="full-unstyled-link">
+    <span class="visually-hidden">פרקט SPC דגם CA169</span>
+  </a>
+  <use-animate data-animate="zoom-fade-small" class="card card--product" tabindex="-1" animate="">
+      <a href="/collections/%D7%A4%D7%A8%D7%A7%D7%98-%D7%A4%D7%A8%D7%A7%D7%98-%D7%A2%D7%A5/products/%D7%A4%D7%A8%D7%A7%D7%98-spc-%D7%93%D7%92%D7%9D-ca169" class="card__media media-wrapper" tabindex="-1">
+        <div class="card--image-animate image-animate media media--square media--hover-effect"><img src="//sananes.co.il/cdn/shop/products/5905167839386_I_03_87bdb9c5-d609-4a27-8780-8912fa5a0e2e.webp?v=1679308322&amp;width=1100" alt="פרקט SPC דגם CA169" srcset="//sananes.co.il/cdn/shop/products/5905167839386_I_03_87bdb9c5-d609-4a27-8780-8912fa5a0e2e.webp?v=1679308322&amp;width=165 165w, //sananes.co.il/cdn/shop/products/5905167839386_I_03_87bdb9c5-d609-4a27-8780-8912fa5a0e2e.webp?v=1679308322&amp;width=360 360w, //sananes.co.il/cdn/shop/products/5905167839386_I_03_87bdb9c5-d609-4a27-8780-8912fa5a0e2e.webp?v=1679308322&amp;width=535 535w, //sananes.co.il/cdn/shop/products/5905167839386_I_03_87bdb9c5-d609-4a27-8780-8912fa5a0e2e.webp?v=1679308322&amp;width=750 750w, //sananes.co.il/cdn/shop/products/5905167839386_I_03_87bdb9c5-d609-4a27-8780-8912fa5a0e2e.webp?v=1679308322&amp;width=940 940w, //sananes.co.il/cdn/shop/products/5905167839386_I_03_87bdb9c5-d609-4a27-8780-8912fa5a0e2e.webp?v=1679308322&amp;width=1100 1100w" width="1100" height="1467" loading="lazy" class="motion-reduce loaded" sizes="(min-width: 1600px) 367px, (min-width: 990px) calc((100vw - 10rem) / 4), (min-width: 750px) calc((100vw - 10rem) / 3), calc(100vw - 3rem)" is="lazy-image"><img src="//sananes.co.il/cdn/shop/products/5905167839386_I_04_6ef1bda3-1574-4dcc-998a-dff106a6ce55.webp?v=1678364649&amp;width=1100" alt="פרקט SPC דגם CA169" srcset="//sananes.co.il/cdn/shop/products/5905167839386_I_04_6ef1bda3-1574-4dcc-998a-dff106a6ce55.webp?v=1678364649&amp;width=165 165w, //sananes.co.il/cdn/shop/products/5905167839386_I_04_6ef1bda3-1574-4dcc-998a-dff106a6ce55.webp?v=1678364649&amp;width=360 360w, //sananes.co.il/cdn/shop/products/5905167839386_I_04_6ef1bda3-1574-4dcc-998a-dff106a6ce55.webp?v=1678364649&amp;width=535 535w, //sananes.co.il/cdn/shop/products/5905167839386_I_04_6ef1bda3-1574-4dcc-998a-dff106a6ce55.webp?v=1678364649&amp;width=750 750w, //sananes.co.il/cdn/shop/products/5905167839386_I_04_6ef1bda3-1574-4dcc-998a-dff106a6ce55.webp?v=1678364649&amp;width=940 940w, //sananes.co.il/cdn/shop/products/5905167839386_I_04_6ef1bda3-1574-4dcc-998a-dff106a6ce55.webp?v=1678364649&amp;width=1100 1100w" width="1100" height="825" loading="lazy" class="motion-reduce loaded" sizes="(min-width: 1600px) 367px, (min-width: 990px) calc((100vw - 10rem) / 4), (min-width: 750px) calc((100vw - 10rem) / 3), calc(100vw - 3rem)" is="lazy-image"></div>
+      </a></use-animate>
+
+  <div class="card-information">
+    <div class="card-information__wrapper"><div class="card-information__top"></div><a href="/collections/%D7%A4%D7%A8%D7%A7%D7%98-%D7%A4%D7%A8%D7%A7%D7%98-%D7%A2%D7%A5/products/%D7%A4%D7%A8%D7%A7%D7%98-spc-%D7%93%D7%92%D7%9D-ca169" class="card-information__text h4" tabindex="-1">
+        פרקט SPC דגם CA169
+      </a>
+
+
+      <span class="caption-large light"></span>
+
+
+<div class="price price--on-sale">
+  <dl><div class="price__regular">
+      <dt>
+        <span class="visually-hidden visually-hidden--inline">מחיר באתר</span>
+      </dt>
+      <dd>
+        <span class="price-item price-item--regular">
+          <price-money><bdi><span class="price__prefix">₪</span>157<sup class="price__suffix">.50</sup> </bdi></price-money>
+
+
+     למ"ר
+
+
+
+
+        </span>
+      </dd>
+    </div>
+    <div class="price__sale"><dt class="price__compare">
+          <span class="visually-hidden visually-hidden--inline">מחיר באתר</span>
+        </dt>
+        <dd class="price__compare">
+          <s class="price-item price-item--regular">
+            <price-money><bdi><span class="price__prefix">₪</span>175<sup class="price__suffix">.00</sup> </bdi></price-money>
+          </s>
+        </dd><dt>
+        <span class="visually-hidden visually-hidden--inline">מחיר מבצע</span>
+      </dt>
+      <dd>
+        <span class="price-item price-item--sale">
+          <price-money><bdi><span class="price__prefix">₪</span>157<sup class="price__suffix">.50</sup> </bdi></price-money>
+
+
+     למ"ר
+
+
+
+
+        </span>
+      </dd>
+    </div></dl></div>
+</div>
+
+    <div class="card-information__button"><quick-view-button class="button button--small" data-product-url="/collections/%D7%A4%D7%A8%D7%A7%D7%98-%D7%A4%D7%A8%D7%A7%D7%98-%D7%A2%D7%A5/products/%D7%A4%D7%A8%D7%A7%D7%98-spc-%D7%93%D7%92%D7%9D-ca169">
+                בחירת אפשרויות
+                <svg class="icon icon-cart" aria-hidden="true" focusable="false">
+                  <use href="#icon-cart"></use>
+                </svg>
+              </quick-view-button></div>
+  </div>
+
+  <div class="card__badge"><span class="badge badge--onsale" aria-hidden="true">
+מבצע
+
+        </span></div><quick-view-drawer>
+      <details>
+        <summary class="quick-view__summary" tabindex="-1">
+          <span class="visually-hidden">צפייה מהירה</span>
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-search" fill="none" viewBox="0 0 15 17">
+      <circle cx="7.11113" cy="7.11113" r="6.56113" stroke="currentColor" stroke-width="1.1" fill="none"></circle>
+      <path d="M11.078 12.3282L13.8878 16.0009" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" fill="none"></path>
+    </svg>
+        </summary>
+        <quick-view class="quick-view" data-product-url="/collections/%D7%A4%D7%A8%D7%A7%D7%98-%D7%A4%D7%A8%D7%A7%D7%98-%D7%A2%D7%A5/products/%D7%A4%D7%A8%D7%A7%D7%98-spc-%D7%93%D7%92%D7%9D-ca169">
+          <div role="dialog" aria-label="" aria-modal="true" class="quick-view__content" tabindex="-1"></div>
+        </quick-view>
+      </details>
+    </quick-view-drawer></div>
+
+              </li>"""
+
+    tag_tree = extract_tag_tree(html_text)
+    print(tag_tree)
+
+
+async def test_find_by_multiple_trees():
+    html_text = await get_html_async(
+        "https://sananes.co.il/collections/%D7%A4%D7%A8%D7%A7%D7%98-%D7%A4%D7%A8%D7%A7%D7%98-%D7%A2%D7%A5", clean=True)
+    tree = ("lilinkdivaspanuse-animateadivimgimgdivdivdivaspandivdldivdtspanddspanprice"
+            "-moneybdispansupdivdtspanddsprice-moneybdispansupdtspanddspanprice-moneybdispansupdivquick-view"
+            "-buttonsvgusedivspanquick-view-drawerdetailssummaryspansvgcirclepathquick-viewdiv")
+
+    res = find_by_multiple_trees(html_text, [tree])
+    print(len(res))
+    print(len(res.get(tree)[0]))
+
+
+if __name__ == "__main__":
+    # test_tag_tree()
+    asyncio.run(test_find_by_multiple_trees())

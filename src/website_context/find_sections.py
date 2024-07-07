@@ -5,7 +5,8 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 import numpy as np
 
-from src.scrap.__init__ import get_html, clean_html
+from src.ask_llm.llm_tasks.shop_sections import categorize_product_urls
+from src.scrap import get_html_async
 from src.ask_llm.llm_tasks.categories_urls import categories_urls_using_ai
 
 logger = logging.getLogger("actor").getChild("find_sections")
@@ -53,10 +54,10 @@ def extract_section_urls(base_url, html_text):
         random_links = list(random_links)
 
         # Categorize them using AI
-        output = categories_urls_using_ai(base_url, random_links, "gemini", caching=True)
+        output = categorize_product_urls(base_url, random_links, "gemini", caching=True)
         logger.debug(f"Group: {key}, len: {len(links_group)}, random_links: {random_links}")
 
-        group_score = [output[key]["category"] == "articles_page" for key in output.keys()]
+        group_score = [output[key]["category"] == "product_category_page" for key in output.keys()]
         group_score = sum(group_score) / len(group_score)
         logger.debug(f"Ai outputs: {output}, group_score: {group_score}")
 
@@ -113,14 +114,25 @@ def find_sections(base_url, html_text):
 
 
 def test_extract_sections():
-    base_url = "https://www.theverge.com/"
-    html_text = get_html(base_url, cache=True)
-    html_text = clean_html(html_text)
+    # setup logging
+    logging.basicConfig(filename='actor.log', level=logging.DEBUG)
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+    logger.addHandler(handler)
+
+    logger.info("Testing extract_sections")
+
+    base_url = "https://sananes.co.il/"
+    html_text = get_html_async(base_url, cache=True, clean=True)
 
     section_urls = find_sections(base_url, html_text)
     for url in section_urls:
-        logger.info("Section URL: ", url)
+        logger.info(f"Section URL: {url}")
 
     logger.info(len(section_urls))
+
+
+
+
 
 # test_extract_sections()
