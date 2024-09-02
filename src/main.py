@@ -35,7 +35,7 @@ async def main() -> None:
             # "https://www.marketwatch.com/", bot detection
             # "https://fortune.com/", context generation troble (mismatched tags)
             # "https://streetinsider.com/", # premium (some headlines avilable)  - article loader not working
-            "https://www.stocktitan.net/",
+            # "https://www.stocktitan.net/", over info
             "https://www.manufacturingtodayindia.com/",
             "https://dw.com/",
             "https://hackread.com/",
