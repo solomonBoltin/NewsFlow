@@ -4,7 +4,15 @@ import faust
 from src.kafka.faust_article_preview import FaustArticlePreview
 
 # Define a Faust app
-app = faust.App('app1', broker='kafka://127.0.0.1:9092',  web_port=6067)
+app_name = "newsflow-1"
+app = faust.App(
+    app_name,
+    broker='kafka://127.0.0.1:9092',
+    web_port=6067,
+    config_source={
+        "datadir": f"storage/{app_name}",
+    },
+)
 
 # Define a Faust topic
 topic = app.topic('article-preview', value_type=FaustArticlePreview)
@@ -36,7 +44,6 @@ async def run():
 
     # Stop the app
     await app.stop()
-
 
 
 if __name__ == '__main__':
