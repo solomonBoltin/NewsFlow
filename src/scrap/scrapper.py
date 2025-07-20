@@ -1,13 +1,15 @@
 import asyncio
 import logging
 import os
-from typing import Dict
+from typing import Dict, Set
+import time
 
 from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright, Page, TimeoutError
 from playwright_stealth import stealth_async
 
 from src.utils import url_to_file_name, storage_path
+from src.config import MAX_PAGES, PAGE_TIMEOUT
 
 logger = logging.getLogger('actor').getChild("scrapper")
 
@@ -18,12 +20,15 @@ logger = logging.getLogger('actor').getChild("scrapper")
 # it exposes a method to get a html from a url, and a method to close the browser and playwright.
 # """
 class Scrapper:
-    _max_pages = 5
+    _max_pages = MAX_PAGES
     _pl = None
     _browser = None
     _pages_dict: Dict[Page, bool] = {}
+    _page_timestamps: Dict[Page, float] = {}  # Track when pages became busy
     _lock = None
+    _semaphore = None
     _instance = None
+    _page_timeout = PAGE_TIMEOUT
 
     def __new__(cls, max_pages=None):
         if max_pages is not None:
@@ -32,6 +37,7 @@ class Scrapper:
         if cls._instance is None:
             cls._instance = super(Scrapper, cls).__new__(cls)
             cls._lock = asyncio.Lock()
+            cls._semaphore = asyncio.BoundedSemaphore(cls._max_pages)
         return cls._instance
 
     async def _initialize_playwright(self):
@@ -41,41 +47,74 @@ class Scrapper:
 
     @property
     def available_pages(self):
+        current_time = time.time()
+        # Clean up stuck pages first
+        stuck_pages = [
+            page for page, timestamp in self._page_timestamps.items() 
+            if current_time - timestamp > self._page_timeout
+        ]
+        for page in stuck_pages:
+            logger.warning(f"Cleaning up stuck page after {self._page_timeout}s timeout")
+            self._cleanup_page(page)
+        
         return [page for page, busy in self._pages_dict.items() if not busy]
 
     async def get_available_page(self):
-        async with self._lock:
-            if not self._pl:
-                await self._initialize_playwright()
-            if self.available_pages:
-                page = self.available_pages[0]
-                self._pages_dict[page] = True
-                return page
+        # Use semaphore to limit concurrent access instead of busy waiting
+        await self._semaphore.acquire()
+        
+        try:
+            async with self._lock:
+                if not self._pl:
+                    await self._initialize_playwright()
+                
+                # Check for available pages first
+                available = self.available_pages
+                if available:
+                    page = available[0]
+                    self._pages_dict[page] = True
+                    self._page_timestamps[page] = time.time()
+                    return page
 
-            if len(self._pages_dict) < self._max_pages:
-                page = await self._browser.new_page()
+                # Create new page if under limit
+                if len(self._pages_dict) < self._max_pages:
+                    page = await self._browser.new_page()
+                    # Page settings
+                    await stealth_async(page)
+                    self._pages_dict[page] = True
+                    self._page_timestamps[page] = time.time()
+                    return page
+                
+                # This should not happen due to semaphore, but safety check
+                raise RuntimeError("No pages available and cannot create new ones")
+        except Exception:
+            # Release semaphore if we fail to get a page
+            self._semaphore.release()
+            raise
 
-                # Page settings
-                await stealth_async(page)
-
-                self._pages_dict[page] = True
-                return page
-
-        await asyncio.sleep(1)
-        return await self.get_available_page()
+    def _cleanup_page(self, page):
+        """Clean up a page and remove it from tracking"""
+        if page in self._pages_dict:
+            del self._pages_dict[page]
+        if page in self._page_timestamps:
+            del self._page_timestamps[page]
 
     async def release_page(self, page):
         self._pages_dict[page] = False
+        if page in self._page_timestamps:
+            del self._page_timestamps[page]
+        self._semaphore.release()
 
     async def close(self):
-        await self._browser.close()
-        await self._pl.stop()
+        if self._browser:
+            await self._browser.close()
+        if self._pl:
+            await self._pl.stop()
 
     async def get_html(self, url, clean=True, screenshots=True):
-
-        page = await self.get_available_page()
-
+        page = None
         try:
+            page = await self.get_available_page()
 
             # goto page
             try:
@@ -103,9 +142,6 @@ class Scrapper:
             # get html content
             html_content = await page.content()
 
-            # release page
-            await self.release_page(page)
-
             save_html(html_content, f"{url_to_file_name(url)}.html")
             if clean:
                 html_content = clean_html(html_content)
@@ -113,8 +149,11 @@ class Scrapper:
 
         except Exception as e:
             logger.error(f"Failed while getting html from {url}: {e}")
-            await self.release_page(page)
             return ""
+        finally:
+            # Always release the page, even on error
+            if page:
+                await self.release_page(page)
 
 
 def clean_html(html_content, remove_attributes=False):

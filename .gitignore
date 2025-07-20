@@ -37,3 +37,4 @@ node_modules
 .venv
 credentials.json
 /migrations
+test_*.py
