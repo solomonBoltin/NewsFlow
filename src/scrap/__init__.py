@@ -117,8 +117,8 @@ async def get_html_async(url, cache=False, clean=False, screenshots=True):
             pass
 
     try:
-        sc = Scrapper(max_pages=2)
-        html = await sc.get_html(url)
+        sc = Scrapper()  # Use default config values now
+        html = await sc.get_html(url, clean=clean, screenshots=screenshots)
         return html
     except Exception as e:
         logger.error(f"Failed to get html from {url}: {e}")

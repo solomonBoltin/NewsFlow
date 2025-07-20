@@ -8,6 +8,7 @@ https://docs.apify.com/sdk/python
 """
 import asyncio
 from asyncio import sleep
+import random
 
 from src.data.article_prview import ArticlePreview
 from src.data.setup import setup_database
@@ -15,6 +16,7 @@ from src.data.setup import setup_database
 from src.news_actor import NewsActor
 from src.scrap.article_preview_scraper import ArticlePreviewScraper
 from src.website_context import WebsiteContext
+from src.config import BASE_DELAY, RATE_LIMIT_ENABLED
 
 
 async def main() -> None:
@@ -73,12 +75,18 @@ async def main() -> None:
                 #     NewsActor.log.error(f"Error: {e}")
                 #     websites.remove(website)
 
-            delay = 0
-            for website in websites:
+            # Create tasks with improved rate limiting
+            for i, website in enumerate(websites):
                 article_preview_scraper = ArticlePreviewScraper(website)
 
+                # Calculate delay based on configuration
+                if RATE_LIMIT_ENABLED:
+                    # Add some randomization to avoid thundering herd
+                    delay = BASE_DELAY * i + random.uniform(0, BASE_DELAY * 0.2)
+                else:
+                    delay = 0
+
                 task = article_preview_scraper.scarp_website_async(delay=delay)
-                delay += 15
                 tasks.append(task)
 
             await asyncio.gather(*tasks)
