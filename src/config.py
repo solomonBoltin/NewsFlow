@@ -9,6 +9,12 @@ GENAI_KEY = os.getenv("GENAI_KEY")
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_ARTICLE_PREVIEW_CHANNEL = os.getenv('TELEGRAM_ARTICLE_PREVIEW_CHANNEL')
 
+# Parallelism and rate limiting configuration
+MAX_PAGES = int(os.getenv('MAX_PAGES', '5'))
+BASE_DELAY = float(os.getenv('BASE_DELAY', '15.0'))  # Base delay between requests in seconds
+RATE_LIMIT_ENABLED = os.getenv('RATE_LIMIT_ENABLED', 'true').lower() == 'true'
+PAGE_TIMEOUT = int(os.getenv('PAGE_TIMEOUT', '60'))  # Timeout for stuck pages
+
 # assert all values are set
 assert GENAI_KEY, "GENAI_KEY environment variable is not set"
 assert TELEGRAM_BOT_TOKEN, "TELEGRAM_BOT_TOKEN environment variable is not set"
